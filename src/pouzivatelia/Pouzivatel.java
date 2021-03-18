@@ -1,0 +1,55 @@
+package pouzivatelia;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import model.Login;
+import model.Objednavka;
+
+public abstract class Pouzivatel implements Serializable{
+	private int id;
+	String meno;
+	Login login;
+	String telefon;
+	String email;
+	ArrayList<Objednavka> objednavky = new ArrayList<Objednavka>();
+	int pocet_obj=0;
+	public int get_pocetobj() {
+		return this.pocet_obj;
+	}
+	public void set_pocetobj(int pocet) {
+		this.pocet_obj = pocet;
+	}
+	public Pouzivatel(int id, String meno, Login login,String telefon, String email) {
+		this.meno = meno;
+		this.telefon = telefon;
+		this.email = email;
+		this.setId(id);
+		this.login = login;
+		
+	}
+	public Pouzivatel(String meno,String telefon, String email) {
+		this.meno = meno;
+		this.telefon = telefon;
+		this.email = email;
+		this.setId(1);
+		this.login = new Login("admin","admin");
+		
+	}
+	public Pouzivatel() {
+		
+	}
+	public Login getLogin() {
+		return this.login;
+	}
+	public void pridaj_objednavku(Objednavka o) {
+		objednavky.add(o);
+		pocet_obj++;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+}
