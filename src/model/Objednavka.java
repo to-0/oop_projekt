@@ -25,4 +25,14 @@ public class Objednavka implements Serializable{
 	public int get_Klient_id() {
 		return klient.getId();
 	}
+	public String toString(){
+		String s="";
+		for(Tovar t: this.tovar){
+			s += t.toString();
+		}
+		return s;
+	}
+	public String toList(){
+		return "Id: "+ String.valueOf(this.id) + " suma: "+String.valueOf(this.suma) + " mnozstvo poloziek: "+String.valueOf(this.tovar.size());
+	}
 }

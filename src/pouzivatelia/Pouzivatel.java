@@ -46,10 +46,19 @@ public abstract class Pouzivatel implements Serializable{
 		objednavky.add(o);
 		pocet_obj++;
 	}
+	public boolean validuj(String nick, String pass){
+		return login.valid_login(nick, pass);
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getMeno(){
+		return this.meno;
+	}
+	public ArrayList<Objednavka> getObjednavky(){
+		return this.objednavky;
 	}
 }

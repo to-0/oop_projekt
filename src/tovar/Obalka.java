@@ -30,5 +30,8 @@ public class Obalka extends TovarRozmer{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public String toString(){
+		return "Obalka " + "typ: "+this.typ+" mnozstvo:"+this.mnozstvo;
+	}
 
 }

@@ -49,11 +49,30 @@ public class Fotka extends TovarRozmer{
 	private int typ;
 	private boolean farebnost;
 	public double vypocitaj_spotrebu_pap() {
-		return 1;
+		switch(this.typ){
+			case 1:
+				return (this.mnozstvo);
+			case 2:
+				return 0.5*this.mnozstvo;
+			case 3:
+				return 1.5*this.mnozstvo;
+			default:
+				return this.mnozstvo*1.2;
+		}
 	}
 	public double vypocitaj_spotrebu_tonera() {
-		if(farebnost)
-			return this.a*this.b*0.9;
-		return this.a*this.b*0.4;
+		switch(this.typ){
+			case 1:
+				return 10;
+			case 2:
+				return 9;
+			case 3:
+				return 12;
+			default:
+				return 13;
+		}
+	}
+	public String toString(){
+		return "Fotka" + "typ: "+this.typ+" mnozstvo:"+this.mnozstvo + "farebnost: "+farebnost;
 	}
 }

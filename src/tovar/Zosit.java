@@ -30,4 +30,7 @@ public class Zosit extends Tovar{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public String toString(){
+		return "Zosit" + "typ: "+this.typ+" mnozstvo:"+this.mnozstvo;
+	}
 }

@@ -16,26 +16,31 @@ import pouzivatelia.*;
 public class Databaza {
 	private  static ArrayList<Pouzivatel> users = new ArrayList<Pouzivatel>();
 	private static ArrayList<Objednavka> objednavky = new ArrayList<Objednavka>();
+	public static ArrayList<Pouzivatel> getUsers(){
+		return users;
+	}
 	public void generate() {
 		Objednavka o;
 		users.add(new Klient(1,"Anton Bernolak",new Login("anton","123"),"0915453","anton@anton.sk","Duhova","Bratislava","3"));
 		users.add(new Klient(2,"Janko Hrasko",new Login("janko","123"),"091515321","janko@janko.sk","Dlha","Nitra","52"));
 		users.add(new Klient(3,"Beata Pancuchova",new Login("beata","123"),"091785321","be@be.sk","Kratka","Zilina","785"));
-		
+
 		users.add(new Manazer(5,"Ujo Silny",new Login("ujo","123"),"0917789","big@boss.sk"));
 		users.add(new Skladnik(6,"Skladnik Jozo",new Login("jozo","123"),"0911429","jozo@jozovo.com"));
 		users.add(new PracovnikFotky(7,"Ferko Tichy",new Login("ferko","123"),"08897899","ferko@ferko.sk"));
 		users.add(new PracovnikZosit(8,"Zositovec Ujo",new Login("zosit","123"),"09123456","zosit@ferko.sk"));
 		users.add(new PracovnikObalka(9,"Jon Snow",new Login("jon","123"),"095487986","obalka@tomoffice.sk"));
 		ArrayList<Tovar> tovar = new ArrayList<Tovar>();
-		
-	}
-	public static ArrayList<Pouzivatel> getUsers(){
-		return users;
+
 	}
 	public static void init() {
+		if(!Databaza.deserializuj_pouzivatelov() || !Databaza.deserializuj_objednavky()){
+
+		}
 		users = Reader.nacitaj_pouz();
 		objednavky = Reader.nacitaj_objednavky();
+		System.out.println("skoncil som init");
+		prirad_objednavky();
 	}
 	//toto mozno vdaka tomu serealize nebudem potrebovat...
 	public static void prirad_objednavky() {
@@ -48,20 +53,22 @@ public class Databaza {
 				}
 				if(u instanceof Manazer) {
 					u.pridaj_objednavku(o);
-					//u.get
 				}
 			}
 		}
+	}
+	public static Pouzivatel find_user(String nick, String pass){
+		for(Pouzivatel u: users){
+			if(u.validuj(nick,pass))  return u;
+		}
+		return null;
 	}
 	public static void serializuj_pouzivatelov() {
 		 ObjectOutputStream outputStream;
 			try {
 				outputStream = new ObjectOutputStream(new FileOutputStream("pouzivatelia.out"));
-				for(Pouzivatel p:users) { //tu asi nemusi byt cast na specifickeho pouzivatela i guess
-					outputStream.writeObject(p);
-				    outputStream.close();
-				}
-				
+				outputStream.writeObject(users);
+				outputStream.close();
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -77,11 +84,8 @@ public class Databaza {
 		 ObjectOutputStream outputStream;
 			try {
 				outputStream = new ObjectOutputStream(new FileOutputStream("objednavky.out"));
-				for(Objednavka o:objednavky) { //tu asi nemusi byt cast na specifickeho pouzivatela i guess
-					outputStream.writeObject(o);
-				    outputStream.close();
-				}
-				
+				outputStream.writeObject(objednavky);
+				outputStream.close();
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -90,29 +94,29 @@ public class Databaza {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		
 	}
-	public static void deserializuj_pouzivatelov() {
-		Pouzivatel k;
+	public static boolean deserializuj_pouzivatelov() {
 		 try {
 	            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("pouzivatelia.out"));
-	            users.add((Pouzivatel) inputStream.readObject());
+	            users = (ArrayList<Pouzivatel>) inputStream.readObject();
 	            inputStream.close();
-	           // System.out.println("Mal si ulozenu obec " + ((Klient) k).getAdresa().getObec());
+	           return true;
 	        } catch (Exception e) {
 	            System.out.println("Pri citani nastal nejaky problemek.");
+	            return false;
 	        }
 	}
-	public static void deserializuj_objednavky() {
+	public static boolean deserializuj_objednavky() {
 		
 		 try {
 	            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("objednavky.out"));
-	            objednavky.add((Objednavka) inputStream.readObject());
+	            objednavky = (ArrayList<Objednavka>) inputStream.readObject();
 	            inputStream.close();
-	           // System.out.println("Mal si ulozenu obec " + ((Klient) k).getAdresa().getObec());
+	           	return true;
 	        } catch (Exception e) {
-	            System.out.println("Pri citani nastal nejaky problemek.");
+			 System.out.println("Pri citani nastal nejaky problemek.");
+			 return false;
+
 	        }
 	}
 	public static void test() {

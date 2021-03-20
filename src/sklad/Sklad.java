@@ -40,4 +40,10 @@ public class Sklad {
 		}
 		return true;
 	}
+	public static void dopln_sklad(double pap, double tvr_pap, double ton, double f_pap){
+		papier += pap;
+		tvrdy_papier += tvr_pap;
+		toner += ton;
+		foto_papier += f_pap;
+	}
 }

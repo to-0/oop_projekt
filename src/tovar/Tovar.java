@@ -8,7 +8,7 @@ public abstract class Tovar implements Serializable{
 	double cena_kus;
 	int mnozstvo;
 	String nazov;
-	Pouzivatel pracovnik_vyroby;
+	//Pouzivatel pracovnik_vyroby;
 	boolean vyrobeny;
 	int typ;
 	public abstract double vypocitaj_spotrebu_pap(); //kolko listov papiera 
@@ -19,4 +19,5 @@ public abstract class Tovar implements Serializable{
 	public void vybav() {
 		this.vyrobeny = true;
 	}
+
 }
