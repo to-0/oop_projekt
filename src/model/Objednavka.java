@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import pouzivatelia.Klient;
+import pouzivatelia.Pouzivatel;
 import tovar.Tovar;
 
 public class Objednavka implements Serializable{
@@ -25,14 +26,20 @@ public class Objednavka implements Serializable{
 	public int get_Klient_id() {
 		return klient.getId();
 	}
-	public String toString(){
+	public String toList(){
 		String s="";
 		for(Tovar t: this.tovar){
 			s += t.toString();
 		}
 		return s;
 	}
-	public String toList(){
+	public String toString(){
 		return "Id: "+ String.valueOf(this.id) + " suma: "+String.valueOf(this.suma) + " mnozstvo poloziek: "+String.valueOf(this.tovar.size());
+	}
+	public String detail(){
+		return null;
+	}
+	public Klient getKlient(){
+		return this.klient;
 	}
 }

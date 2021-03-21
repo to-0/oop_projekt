@@ -16,6 +16,11 @@ public class Klient extends Pouzivatel{
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
 	}
-	
+	public String toString(){
+		String s = "";
+		s+= "Meno klienta:" +this.meno + "\n Telefon: " + this.telefon + "\n"+
+		"Email: "+this.email + "\n Adresa:"+ this.adresa.toString();
+		return s;
+	}
 	
 }

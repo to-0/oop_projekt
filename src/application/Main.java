@@ -1,20 +1,16 @@
 package application;
 	
-import java.io.IOException;
-
 import databaza.Databaza;
-import gui.controllers.Controller;
+import gui.controllers.LoginController;
+import gui.sceny.LoginScene;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import pouzivatelia.Manazer;
 import pouzivatelia.Pouzivatel;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
@@ -22,35 +18,20 @@ public class Main extends Application {
 	
 	Pouzivatel user;
 	Scene scene2;
-	Controller control;
+	LoginController control;
 	@Override
 	public void start(Stage primaryStage) {
+		this.nacitaj_app(primaryStage);
 		try {
 			Databaza.init();
-			control = new Controller();
-			Label l1 = new Label("Meno");
-			Label l2 = new Label("Heslo");
-			Label message = new Label();
-			TextField meno = new TextField();
-			PasswordField heslo = new PasswordField();
-			Button button = new Button("Login");
-			VBox layout = new VBox();
-			button.setOnAction(e->{
-				try {
-					control.tryLogin(e,meno.getText(),heslo.getText(),message);
-				} catch (Exception exception) {
-					exception.printStackTrace();
-				}
-			}); 
-			Scene scene = new Scene(layout,400,400);
-			layout.getChildren().addAll(l1,meno,l2,heslo,button,message);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-		
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			LoginScene l = new LoginScene();
+			l.startLoginScenu(primaryStage);
+
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public void nacitaj_app(Stage primaryStage){
 
 	}
 	/*

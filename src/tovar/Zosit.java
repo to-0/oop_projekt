@@ -5,7 +5,6 @@ public class Zosit extends Tovar{
 		super(mnozstvo,typ);
 	}
 	private int velkost;
-	private String typ;
 	private int pocet_stran;
 	public int getVelkost() {
 		return velkost;
@@ -14,10 +13,7 @@ public class Zosit extends Tovar{
 		this.velkost = velkost;
 	}
 	public String getTyp() {
-		return typ;
-	}
-	public void setTyp(String typ) {
-		this.typ = typ;
+		return String.valueOf(this.typ);
 	}
 	public int getPocet_stran() {
 		return pocet_stran;
@@ -31,6 +27,18 @@ public class Zosit extends Tovar{
 		return 0;
 	}
 	public String toString(){
-		return "Zosit" + "typ: "+this.typ+" mnozstvo:"+this.mnozstvo;
+		String typ_zosita="";
+		switch(this.typ){
+			case 1:
+				typ_zosita  = "linajkovy";
+				break;
+			case 2:
+				typ_zosita = "stvorcekovy";
+				break;
+			case 3:
+				typ_zosita = "cisty";
+				break;
+		}
+		return "Zosit typ: "+typ_zosita+" mnozstvo:"+this.mnozstvo;
 	}
 }
