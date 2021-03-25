@@ -4,6 +4,8 @@ import databaza.Databaza;
 import gui.controllers.LoginController;
 import gui.sceny.LoginScene;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -13,6 +15,8 @@ import javafx.stage.Stage;
 import pouzivatelia.Pouzivatel;
 import javafx.scene.Scene;
 
+import java.io.IOException;
+
 
 public class Main extends Application {
 	
@@ -21,9 +25,9 @@ public class Main extends Application {
 	LoginController control;
 	@Override
 	public void start(Stage primaryStage) {
-		this.nacitaj_app(primaryStage);
-		try {
+		try { //nacitam databazu cize pouzivatelov a objednavky
 			Databaza.init();
+			//zapnem login scenu
 			LoginScene l = new LoginScene();
 			l.startLoginScenu(primaryStage);
 
@@ -34,6 +38,7 @@ public class Main extends Application {
 	public void nacitaj_app(Stage primaryStage){
 
 	}
+
 	/*
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,11 +55,11 @@ public class Main extends Application {
 		Databaza.init();
 		Databaza.test();
 		launch(args);
-	}*/
+	}
 	@Override
 	public void stop(){
 		System.out.println("Stage is closing");
 		Databaza.serializuj_objednavky();
 		Databaza.serializuj_pouzivatelov();
-	}
+	}*/
 }

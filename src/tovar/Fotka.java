@@ -4,6 +4,7 @@ public class Fotka extends TovarRozmer{
 	public Fotka(int mnozstvo,int typ) { //3 typy proste
 		super(mnozstvo,typ);
 		this.cena_kus = 1;
+		this.typ = typ;
 		switch(typ) {
 		case 1:
 			this.a = 30;
@@ -44,6 +45,7 @@ public class Fotka extends TovarRozmer{
 			this.b = 1;
 			break;
 		}
+		this.typ = typ;
 		this.farebnost = farebnost;
 	}
 	private int typ;
@@ -60,19 +62,20 @@ public class Fotka extends TovarRozmer{
 				return this.mnozstvo*1.2;
 		}
 	}
-	public double vypocitaj_spotrebu_tonera() {
+	public double vypocitaj_spotrebu_tonera() { //v ml...
 		switch(this.typ){
 			case 1:
-				return 10;
+				return this.mnozstvo;
 			case 2:
-				return 9;
+				return 0.7*this.mnozstvo;
 			case 3:
-				return 12;
+				return 1.2*this.mnozstvo;
 			default:
-				return 13;
+				return 1.3*this.mnozstvo;
 		}
 	}
 	public String toString(){
-		return "Fotka typ: "+this.typ+" mnozstvo:"+this.mnozstvo + "farebnost: "+farebnost;
+		return "Fotka typ: "+this.typ+" mnozstvo:"+this.mnozstvo + "farebnost: "+farebnost+"\n"
+				+"\n Vyrobeny: "+this.vyrobeny;
 	}
 }

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import pouzivatelia.Skladnik;
 
 public class Sklad {
-	private static double papier;
-	private static  double tvrdy_papier;
-	private static double toner;
-	private static double foto_papier;
-	public static ArrayList<Skladnik> pozorovatel = new ArrayList<Skladnik>();
+	public static double papier;
+	public static  double tvrdy_papier;
+	public static double toner;
+	public static double foto_papier;
+	public static ArrayList<Skladnik> pozorovatelia = new ArrayList<Skladnik>();
 	public static double getPapier() {
 		return papier;
 	}
@@ -28,6 +28,12 @@ public class Sklad {
 	public static void setToner(double toner) {
 		Sklad.toner = toner;
 	}
+	public static void sklad_init(){
+		papier = 1500;
+		toner = 2000;
+		tvrdy_papier = 600;
+		foto_papier = 1500;
+	}
 	public static double getFoto_papier() {
 		return foto_papier;
 	}
@@ -45,5 +51,13 @@ public class Sklad {
 		tvrdy_papier += tvr_pap;
 		toner += ton;
 		foto_papier += f_pap;
+	}
+	public static void upozorni_pozorovatelov(){
+		for(Skladnik s:pozorovatelia){
+			s.upozorni();
+		}
+	}
+	public static String vrat_stav(){
+		return "Papier "+ papier +"\n Foto papier "+foto_papier +"\n Toner "+toner +"\n Tvrdy papier "+tvrdy_papier;
 	}
 }

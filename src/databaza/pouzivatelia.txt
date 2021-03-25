@@ -1,2 +1,4 @@
 M:anton:123:1:Anton Bernolak:0915453:anton@anton.sk
 K:janko:123:2:Janko Hrasko:0946554:janko@janko.sk:Dlha:Nitra:52
+S:jozo:123:3:Jozef Mak:0917412531:jozef@anton.sk
+F:fero:123:4:Fero Fotic:09666666:fero@anton.sk

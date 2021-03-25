@@ -10,18 +10,31 @@ import tovar.Tovar;
 public class Objednavka implements Serializable{
 	private int id;
 	public ArrayList<Tovar> tovar = new ArrayList<Tovar>();
-	int suma;
+	double suma;
 	boolean vybavena;
 	Klient klient;
-	public Objednavka(int id, ArrayList<Tovar> t, int suma,Klient k) {
+	ManazerObjednavok pozorovatel;
+	public Objednavka(int id, ArrayList<Tovar> t, double suma,Klient k) {
 		this.id = id;
 		this.tovar = t;
 		this.suma = suma;
 		this.vybavena = false;
 		this.klient = k;
+		this.pozorovatel = ManazerObjednavok.getInstance();
+	}
+	public Objednavka(int id, ArrayList<Tovar> t,Klient k){
+		this.id = id;
+		this.tovar = t;
+		this.suma = vypocitaj_cel_sumu();
+		this.vybavena = false;
+		this.klient = k;
+		this.pozorovatel = ManazerObjednavok.getInstance();
 	}
 	public int getId() {
 		return id;
+	}
+	public void upozorni_pozorovatela(){
+		this.pozorovatel.upozorni(this);
 	}
 	public int get_Klient_id() {
 		return klient.getId();
@@ -41,5 +54,12 @@ public class Objednavka implements Serializable{
 	}
 	public Klient getKlient(){
 		return this.klient;
+	}
+	private double vypocitaj_cel_sumu(){
+		double sum= 0;
+		for(Tovar t: this.tovar){
+			sum += t.vypocitaj_cenu();
+		}
+		return sum;
 	}
 }

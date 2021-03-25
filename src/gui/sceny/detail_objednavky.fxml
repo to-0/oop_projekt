@@ -13,5 +13,7 @@
 <Label text="Informacie o objednavke:"/>
 <Label fx:id="klient"></Label>
     <Label fx:id="tovar"></Label>
-    <Button text="Vyrob" fx:id="vyrob_b"></Button>
+    <Label fx:id="sprava"></Label>
+    <Button text="Vyrob" fx:id="vyrob_b" onAction="#vyrob_button"></Button>
+
 </VBox>

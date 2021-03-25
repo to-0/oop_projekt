@@ -6,9 +6,47 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.controllers.NovaObjednavka"
-            prefHeight="400.0" prefWidth="600.0">
+<?import javafx.collections.FXCollections?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gui.controllers.NovaObjController"
+      prefHeight="400.0" prefWidth="600.0">
+    <Label text="Druh tovaru"/>
+    <ChoiceBox fx:id="druh_tovaru">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Fotka" />
+                <String fx:value="Zosit" />
+                <String fx:value="Obalka" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Label text="Typ"/>
+    <ChoiceBox fx:id="typ_choicebox">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="1" />
+                <String fx:value="2" />
+                <String fx:value="3" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Label text="Mnozstvo"/>
+    <TextField fx:id="mnozstvo_tovaru" text="1"></TextField>
+    <Label text="Farebnost" fx:id="farebnost"></Label>
+    <ChoiceBox fx:id="farebnost_choicebox">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="ano" />
+                <String fx:value="nie" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Button  text="Pridaj tovar" onAction="#pridaj_tovarButt"></Button>
+    <Button text="Vytvor objednavku" onAction="#vytvor_objednavku_butt"></Button>
+    <TextArea fx:id="stav">
 
-</AnchorPane>
+    </TextArea>
+    <Button text="Spat" onAction="#vrat_domov"> </Button>
+
+</VBox>

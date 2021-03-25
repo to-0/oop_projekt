@@ -1,5 +1,9 @@
 package model;
 
+import sklad.Sklad;
+
 public interface PristupSklad {
-	public String sklad_stav();
+	default String sklad_stav(){
+		return Sklad.vrat_stav();
+	}
 }

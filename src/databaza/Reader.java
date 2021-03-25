@@ -121,7 +121,7 @@ public class Reader {
 				}
 					tovar.add(t);	
 			}
-				int suma = Integer.parseInt(arr[3+j]);
+				double suma = Double.parseDouble(arr[3+j]);
 			//este najst klienta
 				Klient hk = null;
 				for(Pouzivatel k: Databaza.getUsers()) {

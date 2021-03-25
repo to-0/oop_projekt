@@ -34,11 +34,11 @@ public class LoginController {
 	Pouzivatel  user;
 	public void tryLogin(ActionEvent e,String nick, String pass, Label message) throws Exception{
 		user = Databaza.find_user(nick,pass);
-		ArrayList<Objednavka> objednavky = user.getObjednavky();
 		if (user==null){
 			message.setText("Zle heslo");
 			return;
 		}
+		ArrayList<Objednavka> objednavky = user.getObjednavky();
 		App.setUser(user);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/home.fxml"));
 		//Parent root = FXMLLoader.load(getClass().getResource("../sceny/home.fxml"));
@@ -64,6 +64,9 @@ public class LoginController {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("View is now loaded!");
     }*/
+	public void handleLogin(){
+
+	}
     
 
 }

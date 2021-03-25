@@ -3,6 +3,7 @@ package tovar;
 public class Zosit extends Tovar{
 	public Zosit(int mnozstvo, int typ) {
 		super(mnozstvo,typ);
+
 	}
 	private int velkost;
 	private int pocet_stran;

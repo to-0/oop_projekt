@@ -5,32 +5,35 @@ import gui.sceny.LoginScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Objednavka;
+import model.PristupSklad;
+import pouzivatelia.Klient;
 import pouzivatelia.Pouzivatel;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import application.Main;
 
 public class HomeController {
     private Pouzivatel p;
     private ArrayList<Objednavka> p_objednavky;
     private ObservableList<Objednavka> doList;
+    public static String spravy;
     @FXML
     ListView<Objednavka> objednavky_list = new ListView<Objednavka>();
     @FXML
     Label message;
+    @FXML
+    Button sklad_butt;
+    @FXML
+    Button nova_obj;
     @FXML
     public void initialize() {
 
@@ -44,9 +47,27 @@ public class HomeController {
            this.doList.add(o);
             //objednavky_list.getItems().add(o.toList());
         }
-       // objednavky_list  = new ListView<String>();
+        sklad_butt.setVisible(p instanceof PristupSklad);
+        nova_obj.setVisible(p instanceof Klient);
         objednavky_list.getItems().addAll(this.doList);
+        spravy = new String(); //potrebujem vynulovat spravy
     }
+    public void zobraz_nova_objednavka(ActionEvent e){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/nova_objednavka.fxml"));
+            Parent root = loader.load();
+            NovaObjController controller = loader.<NovaObjController>getController();
+            Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+            controller.start(this.p,stage);
+            stage.setTitle("TomOffice");
+            stage.setScene(new Scene(root, 400,500));
+        }
+        catch(IOException eve) {
+            eve.printStackTrace();
+        }
+
+    }
+
     public void zobrazObjednavku(){
        try{
            int index = objednavky_list.getSelectionModel().getSelectedIndex();
@@ -68,5 +89,8 @@ public class HomeController {
         LoginScene l = new LoginScene();
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         l.startLoginScenu(stage);
+    }
+    public void zobrazSklad(){
+
     }
 }

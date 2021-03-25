@@ -6,10 +6,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import model.Login;
+import model.ManazerObjednavok;
 import model.Objednavka;
+import sklad.Sklad;
 import tovar.*;
 import pouzivatelia.*;
 
@@ -41,7 +42,13 @@ public class Databaza {
 		objednavky = Reader.nacitaj_objednavky();
 		System.out.println("skoncil som init");
 		prirad_objednavky();
+		Sklad.sklad_init();
+		ManazerObjednavok m = ManazerObjednavok.getInstance();
+		for(Objednavka o: objednavky){
+			m.prirad_objednavku_pracovnikom(o);
+		}
 	}
+
 	//toto mozno vdaka tomu serealize nebudem potrebovat...
 	public static void prirad_objednavky() {
 		for(Pouzivatel u:users) {
@@ -145,7 +152,26 @@ public class Databaza {
         } catch (Exception e) {
             System.out.println("Pri citani nastal nejaky problemek.");
         }
-       
-       
 	}
+	public static ArrayList<Pracovnik> vrat_vyrobu(){
+		ArrayList<Pracovnik> pracovnici = new ArrayList<>();
+		for(Pouzivatel p: users){
+			if(p instanceof Pracovnik){
+				Pracovnik temp = (Pracovnik) p;
+				pracovnici.add(temp);
+			}
+		}
+		return pracovnici;
+	}
+	public static Pouzivatel najdi_pouzivatela(int id){
+		for(Pouzivatel p2: users){
+			if(id==p2.getId())
+				return p2;
+		}
+		return null;
+	}
+	public static ArrayList<Objednavka> getObjednavky(){
+		return objednavky;
+	}
+
 }
