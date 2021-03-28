@@ -7,9 +7,10 @@ import tovar.Obalka;
 import tovar.Tovar;
 import tovar.Zosit;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ManazerObjednavok {
+public class ManazerObjednavok implements Serializable {
     private ArrayList<Pracovnik> pracovnici;
     private ArrayList<Skladnik> skladnici;
     public static ManazerObjednavok instancia = null;

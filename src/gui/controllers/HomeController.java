@@ -21,11 +21,14 @@ import pouzivatelia.Pouzivatel;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class HomeController {
-    private Pouzivatel p;
+public class HomeController   extends AController {
+    //private Pouzivatel p;
+    //private FXCollections
     private ArrayList<Objednavka> p_objednavky;
     private ObservableList<Objednavka> doList;
-    public static String spravy;
+    public ArrayList<String> spravy;
+    @FXML
+    TextArea spravy_akcii;
     @FXML
     ListView<Objednavka> objednavky_list = new ListView<Objednavka>();
     @FXML
@@ -42,7 +45,7 @@ public class HomeController {
         this.p = u;
         this.p_objednavky = new ArrayList<Objednavka>(objednavky_u);
         this.doList =  FXCollections.observableArrayList();
-        message.setText(App.user.getMeno()); // Perfectly Ok here, as FXMLLoader already populated all @FXML annotated members.
+        message.setText(this.p.getMeno()); // Perfectly Ok here, as FXMLLoader already populated all @FXML annotated members.
         for(Objednavka o:p.getObjednavky()){
            this.doList.add(o);
             //objednavky_list.getItems().add(o.toList());
@@ -50,7 +53,7 @@ public class HomeController {
         sklad_butt.setVisible(p instanceof PristupSklad);
         nova_obj.setVisible(p instanceof Klient);
         objednavky_list.getItems().addAll(this.doList);
-        spravy = new String(); //potrebujem vynulovat spravy
+        spravy = new ArrayList<>(); //potrebujem vynulovat spravy
     }
     public void zobraz_nova_objednavka(ActionEvent e){
         try{
@@ -75,7 +78,7 @@ public class HomeController {
            FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/detail_objednavky.fxml"));
            Parent root = loader.load();
            DetailObjednavky controller = loader.<DetailObjednavky>getController();
-           controller.zobraz_detail(o,p);
+           controller.zobraz_detail(o,p,spravy_akcii);
            Stage stage = new Stage();
            stage.setTitle("TomOffice");
            stage.setScene(new Scene(root, 400,200));

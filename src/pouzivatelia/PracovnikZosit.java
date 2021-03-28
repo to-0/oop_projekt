@@ -1,15 +1,18 @@
 package pouzivatelia;
 
+import javafx.scene.control.TextArea;
 import model.*;
 import sklad.Sklad;
 import tovar.Fotka;
 import tovar.Tovar;
 import tovar.Zosit;
 
+import javax.xml.soap.Text;
+
 public class PracovnikZosit extends Pracovnik implements Vyroba {
 	//tu skontrolujem ci mam dostatok surovin na ZOSIT(y) a potom to dam vyrobit mojmu stroju
 	@Override
-	public boolean vyrob_tovar(Objednavka o){
+	public boolean vyrob_tovar(Objednavka o){ //text area na vypisovanie
 		Zosit z = null;
 		for(Tovar t: o.tovar){
 			if(!(t instanceof Zosit)) //preskakujem tovar ktory nema na starosti
@@ -22,11 +25,7 @@ public class PracovnikZosit extends Pracovnik implements Vyroba {
 				System.out.println("NEDOSTATOK MATERIALOV");
 				return false;
 			}
-			try {
-				this.stroj.zacni_vyrabat(t,o);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			this.stroj.spusti_proces(t,o);
 		}
 		return true;
 	}

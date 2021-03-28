@@ -18,8 +18,8 @@ import tovar.Zosit;
 
 import java.util.ArrayList;
 
-public class NovaObjController {
-    private Pouzivatel p;
+public class NovaObjController  extends AController{
+    //private Pouzivatel p;
     @FXML
     ChoiceBox druh_tovaru;
     @FXML

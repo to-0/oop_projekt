@@ -15,6 +15,7 @@
     <Button text="Detail objednavky" fx:id="detail_o" onAction="#zobrazObjednavku"></Button>
     <Button text="Nova objednavka" fx:id="nova_obj" onAction="#zobraz_nova_objednavka"></Button>
     <Button text="Sklad" onAction="#zobrazSklad" fx:id="sklad_butt"></Button>
+    <TextArea fx:id="spravy_akcii"></TextArea>
     <Button text="Odhlas" onAction="#odhlas"></Button>
 </VBox>
 

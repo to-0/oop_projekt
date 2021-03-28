@@ -5,6 +5,9 @@ import sklad.Sklad;
 import tovar.Fotka;
 import tovar.Tovar;
 
+import java.awt.*;
+import javafx.scene.control.TextArea;
+
 public class PracovnikFotky extends Pracovnik implements Vyroba{
 	public PracovnikFotky(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);

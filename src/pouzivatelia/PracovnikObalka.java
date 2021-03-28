@@ -1,5 +1,6 @@
 package pouzivatelia;
 
+import javafx.scene.control.TextArea;
 import model.*;
 import sklad.Sklad;
 import tovar.Fotka;
@@ -26,11 +27,7 @@ public class PracovnikObalka extends Pracovnik implements Vyroba{
 				System.out.println("NEDOSTATOK MATERIALOV");
 				return false;
 			}
-			try {
-				this.stroj.zacni_vyrabat(t,o);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+			this.stroj.spusti_proces(t,o);
 		}
 		return true;
 	}
