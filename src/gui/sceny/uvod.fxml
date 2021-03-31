@@ -9,7 +9,7 @@
     <TextField fx:id="loginfield"></TextField>
     <Label text="Heslo"/>
     <PasswordField fx:id="passfield"></PasswordField>
-    <Button text="Submit" onAction="#handleLogin"/>
+    <Button text="Login" onAction="#handleLogin"/>
     <Label fx:id="message"/>
     
 </VBox>

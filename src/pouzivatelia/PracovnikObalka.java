@@ -21,10 +21,10 @@ public class PracovnikObalka extends Pracovnik implements Vyroba{
 				continue;
 			f = (Obalka) t;
 			double spotreba_papiera = f.vypocitaj_spotrebu_pap();
-			if(Sklad.papier - spotreba_papiera <= 0){
-				Sklad.upozorni_pozorovatelov();
+			if(sklad.papier - spotreba_papiera <= 0){
+				sklad.upozorni_pozorovatelov();
 				//toto zmenit asi aby sa to vypisalo do v gui niekde, mozno cez return boolean a tam kontrolujem
-				System.out.println("NEDOSTATOK MATERIALOV");
+				this.getSpravy().pridaj_spravu("Nedostatok materialov");
 				return false;
 			}
 			this.stroj.spusti_proces(t,o);

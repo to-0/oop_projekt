@@ -75,8 +75,8 @@ public class NovaObjController  extends AController{
         Parent root = loader.load();
         HomeController controller = loader.<HomeController>getController();
         controller.setData(this.p,this.p.getObjednavky());
-        stage.setTitle("TomOffice");
-        stage.setScene(new Scene(root,400,500));
+        this.stage.setTitle("TomOffice");
+        this.stage.setScene(new Scene(root,600,500));
     }
 
 }

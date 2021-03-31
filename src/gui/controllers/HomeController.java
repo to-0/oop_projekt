@@ -1,6 +1,5 @@
 package gui.controllers;
 
-import application.App;
 import gui.sceny.LoginScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,9 +44,12 @@ public class HomeController   extends AController {
         this.p = u;
         this.p_objednavky = new ArrayList<Objednavka>(objednavky_u);
         this.doList =  FXCollections.observableArrayList();
-        message.setText(this.p.getMeno()); // Perfectly Ok here, as FXMLLoader already populated all @FXML annotated members.
+        System.out.println(this.p.toString());
+        message.setText(this.p.toString());
+        spravy_akcii.setText(this.p.getSpravy().toString());
         for(Objednavka o:p.getObjednavky()){
-           this.doList.add(o);
+            if(!o.getPripravenost()) //zobrazim ju iba ked neni vybavena
+                this.doList.add(o);
             //objednavky_list.getItems().add(o.toList());
         }
         sklad_butt.setVisible(p instanceof PristupSklad);
@@ -62,15 +64,13 @@ public class HomeController   extends AController {
             NovaObjController controller = loader.<NovaObjController>getController();
             Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
             controller.start(this.p,stage);
-            stage.setTitle("TomOffice");
-            stage.setScene(new Scene(root, 400,500));
+            zobraz_okno(root,500,500,stage);
         }
         catch(IOException eve) {
             eve.printStackTrace();
         }
 
     }
-
     public void zobrazObjednavku(){
        try{
            int index = objednavky_list.getSelectionModel().getSelectedIndex();
@@ -79,10 +79,7 @@ public class HomeController   extends AController {
            Parent root = loader.load();
            DetailObjednavky controller = loader.<DetailObjednavky>getController();
            controller.zobraz_detail(o,p,spravy_akcii);
-           Stage stage = new Stage();
-           stage.setTitle("TomOffice");
-           stage.setScene(new Scene(root, 400,200));
-           stage.show();
+           zobraz_okno(root,300,200);
        } catch (IOException e) {
            e.printStackTrace();
        }
@@ -93,7 +90,16 @@ public class HomeController   extends AController {
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         l.startLoginScenu(stage);
     }
-    public void zobrazSklad(){
+    public void zobrazSklad() throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/sklad.fxml"));
+        Parent root = loader.load();
+        SkladController controller = loader.<SkladController>getController();
+        controller.start_sklad(this.p,spravy_akcii);
+        zobraz_okno(root,500,300);
 
+    }
+    public void vycisti(){
+        this.p.getSpravy().vycistiSpravy();
+        this.spravy_akcii.setText("");
     }
 }

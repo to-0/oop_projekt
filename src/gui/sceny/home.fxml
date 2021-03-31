@@ -7,16 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.Stage?>
 
-<VBox prefHeight="200.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" fx:controller="gui.controllers.HomeController">
-    <Label fx:id="message"/>
-    <ListView fx:id="objednavky_list">
+<GridPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml" fx:controller="gui.controllers.HomeController">
+    <Label GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2" fx:id="message"/>
+    <ListView GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="3" GridPane.columnSpan="2" fx:id="objednavky_list">
 
     </ListView>
-    <Button text="Detail objednavky" fx:id="detail_o" onAction="#zobrazObjednavku"></Button>
-    <Button text="Nova objednavka" fx:id="nova_obj" onAction="#zobraz_nova_objednavka"></Button>
-    <Button text="Sklad" onAction="#zobrazSklad" fx:id="sklad_butt"></Button>
-    <TextArea fx:id="spravy_akcii"></TextArea>
-    <Button text="Odhlas" onAction="#odhlas"></Button>
-</VBox>
+    <TextArea GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="1" fx:id="spravy_akcii"></TextArea>
+    <Button  GridPane.columnIndex="3" GridPane.rowIndex="4"
+            text="Detail objednavky" fx:id="detail_o" onAction="#zobrazObjednavku"></Button>
+    <Button GridPane.columnIndex="4" GridPane.rowIndex="4"
+            text="Nova objednavka" fx:id="nova_obj" onAction="#zobraz_nova_objednavka"></Button>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="4"
+            text="Sklad" onAction="#zobrazSklad" fx:id="sklad_butt"></Button>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="5"
+            text="Vycisti Spravy" onAction="#vycisti"></Button>
+
+    <Button GridPane.columnIndex="3" GridPane.rowIndex="5"
+            text="Odhlas" onAction="#odhlas"></Button>
+</GridPane>
 
 

@@ -6,9 +6,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.collections.FXCollections?>
 <GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="gui.controllers.SkladController"
-            prefHeight="400.0" prefWidth="600.0">
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="gui.controllers.SkladController"
+          prefHeight="400.0" prefWidth="600.0">
+    <TextArea fx:id="sklad_text" GridPane.columnIndex="1" GridPane.rowSpan="1" GridPane.rowIndex="1" GridPane.columnSpan="2"
+              text="haLO" >HEL</TextArea>
+    <ChoiceBox fx:id="dopln_choicebox" GridPane.columnIndex="1" GridPane.rowIndex="2">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Papier(ks)"/>
+                <String fx:value="Fotopapier(ks)" />
+                <String fx:value="Toner(ml)" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <TextField GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="mnozstvo" text="10"></TextField>
+    <Button text="Dopln" onAction="#dopln" GridPane.columnIndex="2" GridPane.rowIndex="3"></Button>
 
 </GridPane>

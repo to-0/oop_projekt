@@ -48,7 +48,6 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
             sprava.setText("Tvoja cast tovaru uz bola vyrobena, cakaj na dalsie spracovanie");
             vyrob_b.setVisible(false);
         }
-
     }
     public void vyrob_button(){
         ((Vyroba)this.p).vyrob_tovar(this.o);

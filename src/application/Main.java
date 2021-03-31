@@ -23,6 +23,7 @@ public class Main extends Application {
 	Pouzivatel user;
 	Scene scene2;
 	LoginController control;
+	/*
 	@Override
 	public void start(Stage primaryStage) {
 		try { //nacitam databazu cize pouzivatelov a objednavky
@@ -38,10 +39,11 @@ public class Main extends Application {
 	public void nacitaj_app(Stage primaryStage){
 
 	}
+	*/
 
-	/*
 	@Override
 	public void start(Stage primaryStage) {
+		Databaza.init();
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../gui/sceny/uvod.fxml"));
 			primaryStage.setTitle("Help");
@@ -59,7 +61,8 @@ public class Main extends Application {
 	@Override
 	public void stop(){
 		System.out.println("Stage is closing");
-		Databaza.serializuj_objednavky();
-		Databaza.serializuj_pouzivatelov();
-	}*/
+		//Databaza.serializuj_objednavky();
+		//Databaza.serializuj_pouzivatelov();
+		Databaza.serializuj();
+	}
 }

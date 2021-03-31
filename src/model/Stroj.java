@@ -4,11 +4,13 @@ import pouzivatelia.Pracovnik;
 import pouzivatelia.Vyroba;
 import tovar.Tovar;
 import javafx.scene.control.*;
+
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 //TODO tu bude viacero vlakien
-public class Stroj {
+public class Stroj implements Serializable {
     private  TypStroja typ;
     String nazov;
     Pracovnik pracovnik;

@@ -106,8 +106,9 @@ public class ManazerObjednavok implements Serializable {
     //spracuj upozornenie od objednavky
     public void upozorni(Objednavka o){
         if(this.kontrola_stavu_obj(o)){ //ak je hotova
+            o.priprav_odoslanie();
             this.prirad_skladnika(o);
-            this.odstran_obj_pracovnikom(o);
+            //this.odstran_obj_pracovnikom(o);
         }
     }
     public void prirad_skladnika(Objednavka o){

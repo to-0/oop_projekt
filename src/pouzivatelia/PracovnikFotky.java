@@ -24,10 +24,11 @@ public class PracovnikFotky extends Pracovnik implements Vyroba{
 			f = (Fotka) t;
 			double spotreba_tonera = f.vypocitaj_spotrebu_tonera();
 			double spotreba_papiera = f.vypocitaj_spotrebu_pap();
-			if(Sklad.foto_papier - spotreba_papiera <= 0 || Sklad.toner - spotreba_tonera<=0){
-				Sklad.upozorni_pozorovatelov();
+			if(sklad.foto_papier - spotreba_papiera <= 0 || sklad.toner - spotreba_tonera<=0){
+				sklad.upozorni_pozorovatelov();
 				//toto zmenit asi aby sa to vypisalo do v gui niekde, mozno cez return boolean a tam kontrolujem
 				System.out.println("NEDOSTATOK MATERIALOV");
+				this.getSpravy().pridaj_spravu("Nedostatok materialov");
 				return false;
 			}
 			this.stroj.spusti_proces(t,o);

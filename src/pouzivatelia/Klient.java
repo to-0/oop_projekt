@@ -8,7 +8,6 @@ public class Klient extends Pouzivatel{
 	public Klient(int id, String meno, Login login, String telefon, String email,String ulica, String obec, String cislo) {
 		super(id, meno, login, telefon, email);
 		this.setAdresa(new Adresa(ulica,obec,cislo));
-		// TODO Auto-generated constructor stub
 	}
 	public Adresa getAdresa() {
 		return adresa;
@@ -16,10 +15,10 @@ public class Klient extends Pouzivatel{
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
 	}
-	public String toString(){
+	public String toString(){ //prekonavanie polymorfizmus
 		String s = "";
-		s+= "Meno klienta:" +this.meno + "\n Telefon: " + this.telefon + "\n"+
-		"Email: "+this.email + "\n Adresa:"+ this.adresa.toString();
+		s+= "Meno klienta:" +this.meno + "\nTelefon: " + this.telefon + "\n"+
+		"Email: "+this.email + "\nAdresa:"+ this.adresa.toString();
 		return s;
 	}
 	

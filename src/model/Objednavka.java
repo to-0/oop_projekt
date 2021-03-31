@@ -11,7 +11,21 @@ public class Objednavka implements Serializable{
 	private int id;
 	public ArrayList<Tovar> tovar = new ArrayList<Tovar>();
 	double suma;
-	boolean vybavena;
+	private boolean vybavena;
+	private boolean pripravena; //je pripravena na odoslanie skladnikom? t.j. ci je vyrobeny vsetok tovar co ma
+	public boolean get_stav(){
+		return this.vybavena;
+	}
+	public void vybav(){
+		this.vybavena = true;
+	}
+
+	public void priprav_odoslanie(){
+		this.pripravena = true;
+	}
+	public boolean getPripravenost(){
+		return this.pripravena;
+	}
 	Klient klient;
 	ManazerObjednavok pozorovatel;
 	public Objednavka(int id, ArrayList<Tovar> t, double suma,Klient k) {
@@ -19,6 +33,7 @@ public class Objednavka implements Serializable{
 		this.tovar = t;
 		this.suma = suma;
 		this.vybavena = false;
+		this.pripravena = false;
 		this.klient = k;
 		this.pozorovatel = ManazerObjednavok.getInstance();
 	}
