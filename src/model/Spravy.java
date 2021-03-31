@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Spravy implements Serializable { //pozorovatel je jeden controller
     ArrayList<String> spravy;
-    PozorovatelSprav pozorovatel;
+    transient PozorovatelSprav pozorovatel;
     public Spravy(){
         this.spravy = new ArrayList<>();
     }
@@ -29,6 +29,9 @@ public class Spravy implements Serializable { //pozorovatel je jeden controller
             System.out.println(m);
         });
         return s.toString();
+    }
+    public void vycistiPozorovatela(){
+        this.pozorovatel=null;
     }
 
 

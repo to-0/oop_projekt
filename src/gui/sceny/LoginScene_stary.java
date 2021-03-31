@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Login;
 
-public class LoginScene {
+public class LoginScene_stary {
 
     public void startLoginScenu(Stage primaryStage){
         LoginController control = new LoginController();

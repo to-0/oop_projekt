@@ -2,7 +2,6 @@ package application;
 	
 import databaza.Databaza;
 import gui.controllers.LoginController;
-import gui.sceny.LoginScene;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +28,7 @@ public class Main extends Application {
 		try { //nacitam databazu cize pouzivatelov a objednavky
 			Databaza.init();
 			//zapnem login scenu
-			LoginScene l = new LoginScene();
+			LoginScene_stary l = new LoginScene_stary();
 			l.startLoginScenu(primaryStage);
 
 		} catch(Exception e) {
@@ -46,7 +45,7 @@ public class Main extends Application {
 		Databaza.init();
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("../gui/sceny/uvod.fxml"));
-			primaryStage.setTitle("Help");
+			primaryStage.setTitle("Login");
 			primaryStage.setScene(new Scene(root, 300, 275));
 	        primaryStage.show();
 		} catch (IOException e) {

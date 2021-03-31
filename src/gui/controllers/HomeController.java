@@ -1,6 +1,4 @@
 package gui.controllers;
-
-import gui.sceny.LoginScene;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +14,7 @@ import model.Objednavka;
 import model.PristupSklad;
 import pouzivatelia.Klient;
 import pouzivatelia.Pouzivatel;
+import pouzivatelia.Skladnik;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,8 +47,9 @@ public class HomeController   extends AController {
         message.setText(this.p.toString());
         spravy_akcii.setText(this.p.getSpravy().toString());
         for(Objednavka o:p.getObjednavky()){
-            if(!o.getPripravenost()) //zobrazim ju iba ked neni vybavena
+            if(!(this.p instanceof Skladnik) && !o.getPripravenost()) //zobrazim ju iba ked neni vybavena, ale skladnikovi sa zobrazuju tie co su pripravene na odoslanie
                 this.doList.add(o);
+            else if (this.p instanceof Skladnik && o.getPripravenost()) this.doList.add(o);
             //objednavky_list.getItems().add(o.toList());
         }
         sklad_butt.setVisible(p instanceof PristupSklad);
@@ -86,9 +86,10 @@ public class HomeController   extends AController {
         //Parent root = FXMLLoader.load(getClass().getResource("../sceny/home.fxml"));
     }
     public void odhlas(ActionEvent e)throws Exception{
-        LoginScene l = new LoginScene();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/uvod.fxml"));
+        Parent root = loader.load();
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        l.startLoginScenu(stage);
+        zobraz_okno(root,400,500,stage);
     }
     public void zobrazSklad() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/sklad.fxml"));

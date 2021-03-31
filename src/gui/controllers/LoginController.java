@@ -3,7 +3,6 @@ package gui.controllers;
 
 import application.App;
 import databaza.Databaza;
-import gui.sceny.LoginScene;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,11 +47,6 @@ public class LoginController  extends AController {
 		stage.setScene(new Scene(root, 400,500));
 		message.setText(p.getMeno());
 		System.out.println("OK");
-	}
-	public void showLogin(ActionEvent e) throws Exception{
-		LoginScene l = new LoginScene();
-		Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-		l.startLoginScenu(stage);
 	}
 	public void setScene_Stage(Stage s, Scene scene){
 		this.login_scene = scene;

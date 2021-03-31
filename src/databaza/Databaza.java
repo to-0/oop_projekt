@@ -45,13 +45,17 @@ public class Databaza {
 	}
 	public static void serializuj(){
 		ObjectOutputStream outputStream;
+		System.out.println("Serializujem");
 		try {
 			outputStream = new ObjectOutputStream(new FileOutputStream("pouzivatelia.out"));
 			outputStream.writeObject(users);
 			outputStream.close();
+
+			Sklad sklad = Sklad.getInstance();
 			outputStream = new ObjectOutputStream(new FileOutputStream("sklad.out"));
-			outputStream.writeObject(Sklad.getInstance());
+			outputStream.writeObject(sklad);
 			outputStream.close();
+
 			outputStream = new ObjectOutputStream(new FileOutputStream("objednavky.out"));
 			outputStream.writeObject(objednavky);
 			outputStream.close();
@@ -86,17 +90,20 @@ public class Databaza {
 	}
 	public static boolean deserializuj() {
 		try {
+			ObjectInputStream inputStream3 = new ObjectInputStream(new FileInputStream("sklad.out"));
+			Sklad sklad;
+			sklad = (Sklad) inputStream3.readObject();
+			Sklad.setInstance(sklad);
+			inputStream3.close();
+
 			ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("pouzivatelia.out"));
 			users = (ArrayList<Pouzivatel>) inputStream.readObject();
 			inputStream.close();
 			ObjectInputStream inputStream2 = new ObjectInputStream(new FileInputStream("objednavky.out"));
 			objednavky = (ArrayList<Objednavka>) inputStream2.readObject();
 			inputStream2.close();
-			ObjectInputStream inputStream3 = new ObjectInputStream(new FileInputStream("sklad.out"));
-			Sklad sklad;
-			sklad = (Sklad) inputStream3.readObject();
-			Sklad.setInstance(sklad);
-			inputStream3.close();
+
+
 			return true;
 		} catch (Exception e) {
 			System.out.println("Pri citani nastal problem.");
@@ -144,5 +151,4 @@ public class Databaza {
 	public static ArrayList<Objednavka> getObjednavky(){
 		return objednavky;
 	}
-
 }

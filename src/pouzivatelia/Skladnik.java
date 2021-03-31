@@ -8,9 +8,12 @@ import sklad.Sklad;
 import java.util.ArrayList;
 
 public class Skladnik extends Pouzivatel implements PristupSklad {
+	private Sklad sklad;
 	public Skladnik(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);
 		this.spravy = new Spravy();
+		this.sklad = Sklad.getInstance();
+
 	}
 	public void upozorni(){
 		System.out.println("Treba doplnit sklad...");
@@ -22,13 +25,14 @@ public class Skladnik extends Pouzivatel implements PristupSklad {
 	public void dopln_sklad(int t,double mnozstvo){
 		switch(t){ //podla t-cka viem co idem doplnat
 			case 1:
-				sklad.papier  += mnozstvo;
+				this.sklad.papier  += mnozstvo;
+				System.out.println(sklad.papier);
 				break;
 			case 2:
-				sklad.foto_papier +=  mnozstvo;
+				this.sklad.foto_papier +=  mnozstvo;
 				break;
 			case 3:
-				sklad.toner += mnozstvo;
+				this.sklad.toner += mnozstvo;
 				break;
 		}
 	}
