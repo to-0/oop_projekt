@@ -62,6 +62,6 @@ public class Main extends Application {
 		System.out.println("Stage is closing");
 		//Databaza.serializuj_objednavky();
 		//Databaza.serializuj_pouzivatelov();
-		Databaza.serializuj();
+		//Databaza.serializuj();
 	}
 }

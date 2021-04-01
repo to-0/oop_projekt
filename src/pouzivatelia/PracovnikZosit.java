@@ -34,9 +34,5 @@ public class PracovnikZosit extends Pracovnik implements Vyroba {
 		this.stroj = new Stroj(TypStroja.ZOSIT,"Stroj Zosit",this);
 		this.typPracovnika = TypStroja.ZOSIT;
 	}
-	@Override
-	public String sklad_stav() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

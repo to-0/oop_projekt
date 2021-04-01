@@ -1,4 +1,5 @@
 package gui.controllers;
+import databaza.Databaza;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -6,15 +7,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Objednavka;
-import model.PristupSklad;
 import pouzivatelia.Klient;
 import pouzivatelia.Pouzivatel;
 import pouzivatelia.Skladnik;
+import pouzivatelia.Zamestnanec;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class HomeController   extends AController {
     //private FXCollections
     private ArrayList<Objednavka> p_objednavky;
     private ObservableList<Objednavka> doList;
-    public ArrayList<String> spravy;
+    //public ArrayList<String> spravy;
     @FXML
     TextArea spravy_akcii;
     @FXML
@@ -52,10 +52,10 @@ public class HomeController   extends AController {
             else if (this.p instanceof Skladnik && o.getPripravenost()) this.doList.add(o);
             //objednavky_list.getItems().add(o.toList());
         }
-        sklad_butt.setVisible(p instanceof PristupSklad);
+        sklad_butt.setVisible(p instanceof Zamestnanec);
         nova_obj.setVisible(p instanceof Klient);
         objednavky_list.getItems().addAll(this.doList);
-        spravy = new ArrayList<>(); //potrebujem vynulovat spravy
+        //spravy = new ArrayList<>(); //potrebujem vynulovat spravy
     }
     public void zobraz_nova_objednavka(ActionEvent e){
         try{
@@ -85,12 +85,7 @@ public class HomeController   extends AController {
        }
         //Parent root = FXMLLoader.load(getClass().getResource("../sceny/home.fxml"));
     }
-    public void odhlas(ActionEvent e)throws Exception{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/uvod.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        zobraz_okno(root,400,500,stage);
-    }
+
     public void zobrazSklad() throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/sklad.fxml"));
         Parent root = loader.load();
@@ -102,5 +97,16 @@ public class HomeController   extends AController {
     public void vycisti(){
         this.p.getSpravy().vycistiSpravy();
         this.spravy_akcii.setText("");
+    }
+    public void vybavene_objednavky(ActionEvent e) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/vybavene_objednavky_scena.fxml"));
+        Parent root = loader.load();
+        VybaveneObjController controller = loader.<VybaveneObjController>getController();
+        controller.startuj_cont(this.p);
+        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        zobraz_okno(root,400,500,stage);
+    }
+    public void uloz_akcia(){
+        Databaza.serializuj();
     }
 }

@@ -21,9 +21,13 @@
             text="Sklad" onAction="#zobrazSklad" fx:id="sklad_butt"></Button>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="5"
             text="Vycisti Spravy" onAction="#vycisti"></Button>
+    <Button GridPane.columnIndex="1" GridPane.rowIndex="6"
+            text="Uloz" onAction="#uloz_akcia"></Button>
 
-    <Button GridPane.columnIndex="3" GridPane.rowIndex="5"
+    <Button GridPane.columnIndex="4" GridPane.rowIndex="5"
             text="Odhlas" onAction="#odhlas"></Button>
+    <Button GridPane.columnIndex="3" GridPane.rowIndex="5"
+            text="Vybavene Objednavky" onAction="#vybavene_objednavky"></Button>
 </GridPane>
 
 

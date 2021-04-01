@@ -1,19 +1,13 @@
 package pouzivatelia;
 
 import model.Login;
-import model.PristupSklad;
+import model.Objednavka;
 import model.Spravy;
-import sklad.Sklad;
 
-import java.util.ArrayList;
-
-public class Skladnik extends Pouzivatel implements PristupSklad {
-	private Sklad sklad;
+public class Skladnik extends Zamestnanec {
 	public Skladnik(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);
 		this.spravy = new Spravy();
-		this.sklad = Sklad.getInstance();
-
 	}
 	public void upozorni(){
 		System.out.println("Treba doplnit sklad...");
@@ -35,6 +29,9 @@ public class Skladnik extends Pouzivatel implements PristupSklad {
 				this.sklad.toner += mnozstvo;
 				break;
 		}
+	}
+	public void odosli_objednavku(Objednavka o){
+			o.vybav();
 	}
 
 }

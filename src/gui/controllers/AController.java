@@ -20,4 +20,10 @@ public abstract class AController {
         stage.setScene(new Scene(root,500,500));
         stage.show();
     }
+    public void odhlas(ActionEvent e)throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/uvod.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
+        zobraz_okno(root,400,500,stage);
+    }
 }

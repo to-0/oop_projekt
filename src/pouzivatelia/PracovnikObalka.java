@@ -36,10 +36,5 @@ public class PracovnikObalka extends Pracovnik implements Vyroba{
 		this.stroj = new Stroj(TypStroja.OBALKA,"Stroj na obalky",this);
 		this.typPracovnika = TypStroja.OBALKA;
 	}
-	@Override
-	public String sklad_stav() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

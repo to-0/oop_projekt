@@ -15,5 +15,6 @@
     <Label fx:id="tovar"></Label>
     <Label fx:id="sprava"></Label>
     <Button text="Vyrob" fx:id="vyrob_b" onAction="#vyrob_button"></Button>
+    <Button text="Odosli" fx:id="odosli_b" onAction="#odosli_button"></Button>
 
 </VBox>

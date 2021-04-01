@@ -8,14 +8,12 @@ import tovar.Tovar;
 import tovar.Zosit;
 
 //TATO CLASSA IBA DEFINUJE NOVY ATRIBUT STROJ
-public class Pracovnik extends Pouzivatel{
+public class Pracovnik extends Zamestnanec{
     protected Stroj stroj;
-    protected Sklad sklad;
     protected TypStroja  typPracovnika;
 
     public Pracovnik(int id, String meno, Login login, String telefon, String email){
         super(id,meno,login,telefon,email);
-       this.spravy = new Spravy();
        this.sklad = Sklad.getInstance();
     }
     public boolean skontroluj_stav_tovaru(Objednavka o){ //vrati true ak najde aspon jeden nevyrobeny co ma na starosti

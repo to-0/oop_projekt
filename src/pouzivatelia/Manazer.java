@@ -2,7 +2,7 @@ package pouzivatelia;
 
 import model.Login;
 
-public class Manazer extends Pouzivatel{
+public class Manazer extends Zamestnanec{
 
 	public Manazer(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);
@@ -11,5 +11,6 @@ public class Manazer extends Pouzivatel{
 	public Manazer(String meno, String telefon, String email) {
 		super(meno,telefon,email);
 	}
+
 
 }

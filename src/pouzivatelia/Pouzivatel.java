@@ -37,7 +37,6 @@ public abstract class Pouzivatel implements Serializable{
 		this.email = email;
 		this.setId(1);
 		this.login = new Login("admin","admin");
-		
 	}
 	public Pouzivatel() {
 		
