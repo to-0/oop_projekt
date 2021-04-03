@@ -2,7 +2,9 @@ package pouzivatelia;
 
 import model.Adresa;
 import model.Login;
-
+/*
+Klient si objednava objednavky. Ma navyse adresu a prekonanu toString metodu
+ */
 public class Klient extends Pouzivatel{
 	private Adresa adresa;
 	public Klient(int id, String meno, Login login, String telefon, String email,String ulica, String obec, String cislo) {

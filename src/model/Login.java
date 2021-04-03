@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-
+//na ulozenie prihlasovacich udajov pre pouzivatela
 public class Login implements Serializable{
 	private String meno;
 	private String heslo;
@@ -21,7 +21,7 @@ public class Login implements Serializable{
 	public void setMeno(String meno) {
 		this.meno = meno;
 	}
-	public boolean valid_login(String meno, String heslo) {
+	public boolean valid_login(String meno, String heslo) { //kontrola ci sedia, pri prihlasovani
 		if(this.meno.equals(meno)&& this.heslo.equals(heslo)) {
 			return true;
 		}

@@ -4,7 +4,9 @@ import tovar.Tovar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+/*
+Trieda ktora sluzi na multithreading pri vyrobe
+ */
 public class ProcesVyroby extends Thread{
     Tovar t;
     Objednavka o;
@@ -13,6 +15,7 @@ public class ProcesVyroby extends Thread{
         this.t = t;
         this.o = o;
     }
+    //Ako argument berie stroj, tovar a objednavku
     public ProcesVyroby(Stroj  stroj,Tovar t,Objednavka o){
         this.stroj = stroj;
         this.t = t;
@@ -43,7 +46,7 @@ public class ProcesVyroby extends Thread{
     }*/
     public void run() {
         try {
-            this.stroj.zacni_vyrabat(t,this.o);
+            this.stroj.zacni_vyrabat(t,this.o); //volam synchronized funkciu zacni vyrabat, dam vediet stroju ze ma vyrabat
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

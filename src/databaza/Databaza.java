@@ -30,8 +30,12 @@ public class Databaza {
 			for(Objednavka o: objednavky){
 				m.prirad_objednavku_pracovnikom(o);
 			}
+			Sklad.getInstance().nastav_pozorovatelov();
 		}
-			/*users = Reader.nacitaj_pouz();
+		//ak sklad nema ziadnych pozorovatelov tak nastavim
+		if(Sklad.getInstance().pocet_pozorovatelov()==0)
+			Sklad.getInstance().nastav_pozorovatelov();
+		/*users = Reader.nacitaj_pouz();
 			objednavky = Reader.nacitaj_objednavky();
 			System.out.println("skoncil som init");
 			prirad_objednavky();
@@ -67,7 +71,7 @@ public class Databaza {
 			e.printStackTrace();
 		}
 	}
-	//toto mozno vdaka tomu serealize nebudem potrebovat...
+	//priradim objednavky spravnym kleintom a manazerovovi dam vsetky, volam iba ked sa mi nepodari deserializovat
 	public static void prirad_objednavky() {
 		for(Pouzivatel u:users) {
 			for(Objednavka o: objednavky) {
@@ -138,7 +142,7 @@ public class Databaza {
             System.out.println("Pri citani nastal nejaky problem.");
         }
 	}
-	public static ArrayList<Pracovnik> vrat_vyrobu(){
+	public static ArrayList<Pracovnik> vrat_vyrobu(){ //vrati iba pracovnikov vyroby
 		ArrayList<Pracovnik> pracovnici = new ArrayList<>();
 		for(Pouzivatel p: users){
 			if(p instanceof Pracovnik){

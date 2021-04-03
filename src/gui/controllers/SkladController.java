@@ -21,14 +21,15 @@ public class SkladController extends  AController implements PozorovatelSprav {
         this.spravy_home = spravy;
         this.p.getSpravy().setPozorovatel(this);
         sklad = Sklad.getInstance();
+        //ak je pouzivatel skladnik zobrazim mu moznosti na doplnenie skladu
         mnozstvo.setVisible(p instanceof Skladnik);
         dopln_choicebox.setVisible(p instanceof Skladnik);
         sklad_text.setText(sklad.vrat_stav());
         System.out.println(Sklad.getInstance().vrat_stav());
     }
-    public void dopln(){
+    public void dopln(){ //podla toho ktory index choiceboxu si skladnik vybral nastavim t a volam dopln sklad s mnozstvom a tymto argumentom
         int t=0;
-        String moznost = (String) dopln_choicebox.getValue();
+        String moznost = (String) dopln_choicebox.getValue(); //ktory index moznosti si vybral
         switch (moznost){
             case "Papier(ks)":
                 t=1;
@@ -45,7 +46,7 @@ public class SkladController extends  AController implements PozorovatelSprav {
         sklad_text.appendText("\n"+sklad.vrat_stav());
         this.p.getSpravy().pridaj_spravu("Sklad bol doplneny");
     }
-
+    //tento controller je zaroven pozorovatelom sprav pretoze potrebujem vypisat na domovsku obrazovku ked ho doplnim, cize pozoruje spravy skladnika
     @Override
     public void notify(String sprava) {
         this.spravy_home.appendText("\n"+sprava);

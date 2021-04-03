@@ -1,7 +1,7 @@
 package model;
 
 import java.io.Serializable;
-
+//trieda Adresa sluzi iba na ulozenie adresy klienta
 public class Adresa implements Serializable{
 	private String ulica;
 	private String obec;
@@ -17,6 +17,7 @@ public class Adresa implements Serializable{
 	public String getUlica() {
 		return ulica;
 	}
+	//toString na vypis adresy
 	public String toString() {
 		return this.ulica+" "+this.cislo+" "+this.obec;
 	}

@@ -10,12 +10,18 @@ import tovar.Zosit;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+/*
+Trieda ktora ma na starosti manazment objednavok, nie je to fyzicka osoba ale automatizovany proces, singleton.
+Priraduje objednavky pracovnikom, ked su vyrobene skladnikom a zaroven pozoruje vsetky objednavky
+pretoze pri kazdej zmene kontroluje ci uz je vyrobeny vsetok tovar a ci sa ma presunut skladnikovi.
+ */
 public class ManazerObjednavok implements Serializable {
     private ArrayList<Pracovnik> pracovnici;
     private ArrayList<Skladnik> skladnici;
     public static ManazerObjednavok instancia = null;
     private ManazerObjednavok(){
-        this.pracovnici = Databaza.vrat_vyrobu();
+        this.pracovnici = Databaza.vrat_vyrobu(); //ukladam si separatne pracovnikov pre lahsie priradovanie objednavok pracovnikom
        // this.skladnici = Databaza.vrat_skladnikov();
     }
     public static ManazerObjednavok getInstance(){
@@ -31,7 +37,7 @@ public class ManazerObjednavok implements Serializable {
         int p2=0; // uz som priradil pracovnika na zosit
         int p3=0; // uz som priradil pracovnika na obalku
         Pracovnik pracovnik = null;
-        //pre kazdy tovar priradim pravcovnika
+        //pre kazdy tovar priradim pravcovnika, ak je tam nejaky tovar viac krat priradim to vsetko iba jednemu pracovnikovi
         for(Tovar t: o.tovar){
             if(t instanceof Fotka && p1!=1){
                 pracovnik = this.najdi_min_vyroba(t);
@@ -46,11 +52,11 @@ public class ManazerObjednavok implements Serializable {
                 p3 = 1;
             }
             if(pracovnik !=null){
-                pracovnik.getObjednavky().add(o);
+                pracovnik.getObjednavky().add(o); //ak som nasiel vyhovujuceho pracovnika tak priradim objednavku
             }
         }
     }
-    //najde najvhodnejsieho kandidata ktoremu pracovnikovi priradit objednavku v zavislosti od tovaru t v objednavke
+    //najde najvhodnejsieho kandidata (ma najmensi pocet objednavok) ktoremu pracovnikovi priradit objednavku v zavislosti od tovaru t v objednavke
     public Pracovnik najdi_min_vyroba(Tovar t) {
         Pracovnik min = null;
         int min_pocet = -1;
@@ -87,7 +93,7 @@ public class ManazerObjednavok implements Serializable {
         return min;
     }
     //vytvori novu objednavku a aktualizuje to s databazou vrati obejdnavku
-    public boolean nova_objednavka(ArrayList<Tovar> t, Klient k){
+    public boolean nova_objednavka(ArrayList<Tovar> t, Klient k){ //ako argumenty vsetok tovar a klient
         if(k==null) return false;
         int id = Databaza.getObjednavky().size()+1;
         Objednavka o = new Objednavka(id+1,t,k);
@@ -103,7 +109,7 @@ public class ManazerObjednavok implements Serializable {
         }
         return true;
     }
-    //spracuj upozornenie od objednavky
+    //spracuje upozornenie od objednavky
     public void upozorni(Objednavka o){
         if(this.kontrola_stavu_obj(o)){ //ak je hotova
             o.priprav_odoslanie();
@@ -111,6 +117,7 @@ public class ManazerObjednavok implements Serializable {
             //this.odstran_obj_pracovnikom(o);
         }
     }
+    //priradim konkretneho skladnika pre objednavku ktoru treba odoslat pretoze uz je vyrobena
     public void prirad_skladnika(Objednavka o){
         Skladnik min_skl=null;
         int pocet = -1;

@@ -28,20 +28,20 @@ public class LoginController  extends AController {
 	PasswordField passfield;
 	Scene login_scene;
 	Stage stage;
-	//Pouzivatel p;
-	public void tryLogin(ActionEvent e,String nick, String pass, Label message) throws Exception{
-		p = Databaza.find_user(nick,pass);
-		if (p ==null){
-			message.setText("Zle heslo");
+	//toto nepouzivam uz nahradene nizsie handlelogin
+	public void tryLogin(ActionEvent e,String nick, String pass, Label message) throws Exception{ //handlovanie buttonu ked kliknem login
+		p = Databaza.find_user(nick,pass); //skusim najst takeho pouzivatela
+		if (p ==null){ //ak neexistuje
+			message.setText("Zle heslo alebo meno");
 			return;
 		}
-		ArrayList<Objednavka> objednavky = p.getObjednavky();
-		App.setUser(p);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/home.fxml"));
+		ArrayList<Objednavka> objednavky = p.getObjednavky(); //zoberiem aj jeh objednavky
+		//App.setUser(p);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/home.fxml")); //nacitam home scenu
 		//Parent root = FXMLLoader.load(getClass().getResource("../sceny/home.fxml"));
 		Parent root = loader.load();
 		HomeController controller = loader.<HomeController>getController();
-		controller.setData(p,objednavky);
+		controller.setData(p,objednavky); //poslem pouzivatela a objednavky controlleru cez set data funkciu
 		Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
 		stage.setTitle("TomOffice");
 		stage.setScene(new Scene(root, 400,500));

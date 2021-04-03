@@ -16,6 +16,7 @@ public class Skladnik extends Zamestnanec {
 	public String sklad_stav(){
 		return sklad.vrat_stav();
 	}
+	//doplnim dany material podla t o mnozstvo double mnozstvo
 	public void dopln_sklad(int t,double mnozstvo){
 		switch(t){ //podla t-cka viem co idem doplnat
 			case 1:
@@ -30,7 +31,7 @@ public class Skladnik extends Zamestnanec {
 				break;
 		}
 	}
-	public void odosli_objednavku(Objednavka o){
+	public void odosli_objednavku(Objednavka o){ //vybavi objednavku
 			o.vybav();
 	}
 

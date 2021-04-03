@@ -3,10 +3,12 @@ package model;
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-
+/*
+Trieda spravy sluzi pre pouzivatelov a na zobrazovanie sprav pre pouzivatelov do gui.
+ */
 public class Spravy implements Serializable { //pozorovatel je jeden controller
-    ArrayList<String> spravy;
-    transient PozorovatelSprav pozorovatel;
+    ArrayList<String> spravy; //vsetky spravy
+    transient PozorovatelSprav pozorovatel; //jeden pozorovatel vzdy
     public Spravy(){
         this.spravy = new ArrayList<>();
     }
@@ -21,6 +23,7 @@ public class Spravy implements Serializable { //pozorovatel je jeden controller
     public void vycistiSpravy(){
         this.spravy  = new ArrayList<>();
     }
+    //vsetky spravy chcem dat do jedneho stringu a vratit
     public String toString(){
         StringBuilder s = new  StringBuilder();
         //lambda

@@ -6,16 +6,18 @@ import java.util.ArrayList;
 import model.Login;
 import model.Objednavka;
 import model.Spravy;
-
+/*
+Abstraktna trieda pre vsetkych pouzivatelov, definujem zakladne atributy a metody.
+ */
 public abstract class Pouzivatel implements Serializable{
 	private int id;
-	String meno;
-	Login login;
-	String telefon;
-	String email;
+	protected String meno;
+	protected Login login;
+	protected String telefon;
+	protected String email;
 	protected Spravy spravy;
 	ArrayList<Objednavka> objednavky = new ArrayList<Objednavka>();
-	int pocet_obj=0;
+	protected int pocet_obj=0;
 	public int get_pocetobj() {
 		return this.pocet_obj;
 	}
@@ -44,11 +46,11 @@ public abstract class Pouzivatel implements Serializable{
 	public Login getLogin() {
 		return this.login;
 	}
-	public void pridaj_objednavku(Objednavka o) {
+	public void pridaj_objednavku(Objednavka o) { //priradim objednavku
 		objednavky.add(o);
 		pocet_obj++;
 	}
-	public boolean validuj(String nick, String pass){
+	public boolean validuj(String nick, String pass){//skontrolujem ci argumenty su rovnake ako meno a heslo pouzivatela
 		return login.valid_login(nick, pass);
 	}
 	public int getId() {
@@ -65,7 +67,7 @@ public abstract class Pouzivatel implements Serializable{
 	}
 	public String toString(){
 		return this.meno  +"\n Email:"+this.email + "\nTelefon:"+this.telefon;
-	}
+	} //na vypis do gui
 	public Spravy getSpravy(){
 		return this.spravy;
 	}

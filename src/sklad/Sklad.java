@@ -3,6 +3,8 @@ package sklad;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import databaza.Databaza;
+import pouzivatelia.Pouzivatel;
 import pouzivatelia.Skladnik;
 
 public class Sklad implements Serializable {
@@ -24,7 +26,7 @@ public class Sklad implements Serializable {
 	public  double toner;
 	public  double foto_papier;
 	public  ArrayList<Skladnik> pozorovatelia;
-
+	//upozorni skladnikov ze treba doplnit sklad
 	public void upozorni_pozorovatelov(){
 		for(Skladnik s: this.pozorovatelia){
 			s.upozorni();
@@ -36,4 +38,18 @@ public class Sklad implements Serializable {
 	public static void setInstance(Sklad sklad){
 		instance = sklad;
 	}
+	public void pridajPozorovatela(Skladnik s){
+		this.pozorovatelia.add(s);
+	}
+	public void nastav_pozorovatelov(){
+		for (Pouzivatel p: Databaza.getUsers()){
+			if(p instanceof Skladnik){
+				this.pridajPozorovatela((Skladnik)p);
+			}
+		}
+	}
+	public int pocet_pozorovatelov(){
+		return this.pozorovatelia.size();
+	}
+
 }

@@ -7,7 +7,7 @@ import tovar.Obalka;
 import tovar.Tovar;
 import tovar.Zosit;
 
-//TATO CLASSA IBA DEFINUJE NOVY ATRIBUT STROJ
+//pracovnik vyraba dany tovar ktory mu je priradeny
 public class Pracovnik extends Zamestnanec{
     protected Stroj stroj;
     protected TypStroja  typPracovnika;
