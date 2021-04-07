@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.ManazerObjednavok;
 import model.Objednavka;
+import model.Vynimka;
 import pouzivatelia.Klient;
 import pouzivatelia.Pouzivatel;
 import tovar.Fotka;
@@ -42,26 +43,31 @@ public class NovaObjController  extends AController{
         this.stage = s;
     }
     //pridavam iba tovar este predtym nez vytvorim objednavku
-    public void pridaj_tovarButt(){
-       String druh = (String) druh_tovaru.getValue();
-        int mnozstvo = Integer.parseInt(mnozstvo_tovaru.getText());
-        boolean farebnost;
-        int typ_tovaru = Integer.parseInt((String)typ_choicebox.getValue());
-        if(farebnost_choicebox.getValue().equals("ano"))
-            farebnost = true;
-        else farebnost = false;
-        switch(druh){ //zistim si aky druh mam vytvoreny
-            case "Fotka":
-                this.tovar.add(new Fotka(mnozstvo,typ_tovaru,farebnost));
-                break;
-            case "Zosit":
-                this.tovar.add(new Zosit(mnozstvo,typ_tovaru));
-                break;
-            case "Obalka":
-                this.tovar.add(new Obalka(mnozstvo,typ_tovaru));
-                break;
+    public void pridaj_tovarButt() {
+        try {
+            String druh = (String) druh_tovaru.getValue();
+            int mnozstvo = Integer.parseInt(mnozstvo_tovaru.getText());
+            boolean farebnost;
+            int typ_tovaru = Integer.parseInt((String) typ_choicebox.getValue());
+            if (farebnost_choicebox.getValue().equals("ano"))
+                farebnost = true;
+            else farebnost = false;
+            switch (druh) { //zistim si aky druh mam vytvoreny
+                case "Fotka":
+                    this.tovar.add(new Fotka(mnozstvo, typ_tovaru, farebnost));
+                    break;
+                case "Zosit":
+                    this.tovar.add(new Zosit(mnozstvo, typ_tovaru));
+                    break;
+                case "Obalka":
+                    this.tovar.add(new Obalka(mnozstvo, typ_tovaru));
+                    break;
+            }
+            stav.setText(this.tovar.toString());
         }
-        stav.setText(this.tovar.toString());
+        catch(RuntimeException e){
+            throw new Vynimka("Nespravny vstup");
+        }
     }
     //spracujem akciu vytvorenia objednavok
     public void vytvor_objednavku_butt(ActionEvent e) throws Exception{

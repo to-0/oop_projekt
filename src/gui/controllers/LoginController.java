@@ -28,7 +28,7 @@ public class LoginController  extends AController {
 	PasswordField passfield;
 	Scene login_scene;
 	Stage stage;
-	//toto nepouzivam uz nahradene nizsie handlelogin
+	//toto nepouzivam uz nahradene nizsie handlelogin, iba ked robil gui manualne cez class nie cez fxml subor
 	public void tryLogin(ActionEvent e,String nick, String pass, Label message) throws Exception{ //handlovanie buttonu ked kliknem login
 		p = Databaza.find_user(nick,pass); //skusim najst takeho pouzivatela
 		if (p ==null){ //ak neexistuje

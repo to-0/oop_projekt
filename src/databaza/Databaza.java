@@ -22,12 +22,12 @@ public class Databaza {
 	}
 	public static Sklad sklad;
 	public static void init() {
-		if(!Databaza.deserializuj()){ //ked sa mi nepodari deserializovat vsetko
+		if(!Databaza.deserializuj()) { //ked sa mi nepodari deserializovat vsetko
 			users = Reader.nacitaj_pouz();
 			objednavky = Reader.nacitaj_objednavky();
 			prirad_objednavky();
 			ManazerObjednavok m = ManazerObjednavok.getInstance();
-			for(Objednavka o: objednavky){
+			for (Objednavka o : objednavky) {
 				m.prirad_objednavku_pracovnikom(o);
 			}
 			Sklad.getInstance().nastav_pozorovatelov();

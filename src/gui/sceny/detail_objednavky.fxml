@@ -12,7 +12,7 @@
             prefHeight="400.0" prefWidth="600.0">
 <Label text="Informacie o objednavke:"/>
 <Label fx:id="klient"></Label>
-    <Label fx:id="tovar"></Label>
+    <TextArea fx:id="tovar"></TextArea>
     <Label fx:id="sprava"></Label>
     <Button text="Vyrob" fx:id="vyrob_b" onAction="#vyrob_button"></Button>
     <Button text="Odosli" fx:id="odosli_b" onAction="#odosli_button"></Button>

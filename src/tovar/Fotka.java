@@ -75,7 +75,6 @@ public class Fotka extends TovarRozmer{
 		}
 	}
 	public String toString(){
-		return "Fotka typ: "+this.typ+" mnozstvo:"+this.mnozstvo + "farebnost: "+farebnost+"\n"
-				+"\n Vyrobeny: "+this.vyrobeny;
+		return "Fotka typ: "+this.typ+" mnozstvo:"+this.mnozstvo + "farebnost: "+farebnost+"\n test";
 	}
 }

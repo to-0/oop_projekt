@@ -30,16 +30,13 @@ public class Main extends Application {
 			//zapnem login scenu
 			LoginScene_stary l = new LoginScene_stary();
 			l.startLoginScenu(primaryStage);
-
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public void nacitaj_app(Stage primaryStage){
-
 	}
 	*/
-
 	@Override
 	public void start(Stage primaryStage) {
 		Databaza.init();

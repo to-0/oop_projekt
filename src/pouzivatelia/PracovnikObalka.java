@@ -17,7 +17,7 @@ public class PracovnikObalka extends Pracovnik implements Vyroba{
 			return false;
 		}
 		for(Tovar t: o.tovar){
-			if(!(t instanceof Fotka)) //preskakujem tovar ktory nema na starosti
+			if(!(t instanceof Obalka)) //preskakujem tovar ktory nema na starosti
 				continue;
 			f = (Obalka) t;
 			double spotreba_papiera = f.vypocitaj_spotrebu_pap();

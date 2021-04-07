@@ -22,8 +22,7 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
     @FXML
     Label klient;
     @FXML
-    Label tovar;
-
+    TextArea tovar;
     @FXML
     Button vyrob_b;
     @FXML
@@ -60,11 +59,11 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
         this.p=p;
         this.o=o;
         klient.setText(o.getKlient().toString());
-        String s="";
+        StringBuilder s= new StringBuilder();
         for(Tovar t: o.tovar){
-            s += " "+t.toString() +"\n";
+            s.append(" ").append(t.toString()).append("\n");
         }
-        tovar.setText(s);
+        tovar.setText(s.toString());
         //ked je objednavka vybavene nebudem zobrazovat ziadny button...
         odosli_b.setVisible(false);
         vyrob_b.setVisible(false);
