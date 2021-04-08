@@ -3,4 +3,9 @@ K:janko:123:2:Janko Hrasko:0946554:janko@janko.sk:Dlha:Nitra:52
 S:jozo:123:3:Jozef Mak:0917412531:jozef@anton.sk
 F:fero:123:4:Fero Fotic:09666666:fero@anton.sk
 Z:zoltan:123:5:Zoltan Velky:0966520:zoltan@tomoffice.sk
-O:oliver:123:5:Oliver Obalkovy:0966520:oliver@tomoffice.sk
+O:oliver:123:6:Oliver Obalkovy:0966520:oliver@tomoffice.sk
+O:olga:123:7:Olga Ohm:0917412531:olga@anton.sk
+S:silvia:123:8:Silvia Slizka:09666666:silvia@anton.sk
+Z:zoro:123:9:Zoro Statocny:0966520:zoro@tomoffice.sk
+F:fratisek:123:10:Frantisek Ftipny:0966520:frantisek@tomoffice.sk
+K:Alzbeta:123:11:Alzbeta Akcna:0946554:alzbeta@janko.sk:Vinna:Pezinok:20
