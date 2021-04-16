@@ -7,11 +7,29 @@ import pouzivatelia.Klient;
 import pouzivatelia.Pouzivatel;
 import tovar.Tovar;
 
+/**
+ * Trieda objednávka, má informácie o objednávke a poskytuje metódy na prácu s objednávkou.
+ */
 public class Objednavka implements Serializable{
+	/**
+	 * Id objednávky
+	 */
 	private int id;
+	/**
+	 * Zoznam tovarov v objednávke
+	 */
 	public ArrayList<Tovar> tovar = new ArrayList<Tovar>();
+	/**
+	 * Celková suma ojednávky.
+	 */
 	double suma;
+	/**
+	 * Vybavenost tovaru
+	 */
 	private boolean vybavena;
+	/**
+	 * Pripravenost objednávky na odoslanie
+	 */
 	private boolean pripravena; //je pripravena na odoslanie skladnikom? t.j. ci je vyrobeny vsetok tovar co ma
 	public boolean get_stav(){
 		return this.vybavena;
@@ -48,6 +66,10 @@ public class Objednavka implements Serializable{
 	public int getId() {
 		return id;
 	}
+
+	/**
+	 * Upozorni manazera objednavok na zmenu objednavky.
+	 */
 	public void upozorni_pozorovatela(){
 		this.pozorovatel.upozorni(this);
 	}
@@ -61,6 +83,11 @@ public class Objednavka implements Serializable{
 		}
 		return s;
 	}
+
+	/**
+	 * Vráti string, ktorý obsahuje základné informácie o objednávke.
+	 * @return
+	 */
 	public String toString(){
 		return "Id: "+ String.valueOf(this.id) + " suma: "+String.valueOf(this.suma) + " mnozstvo poloziek: "+String.valueOf(this.tovar.size());
 	}
@@ -70,6 +97,11 @@ public class Objednavka implements Serializable{
 	public Klient getKlient(){
 		return this.klient;
 	}
+
+	/**
+	 * Vypočíta celkovú sumu objednávky.
+	 * @return celková suma objednávky.
+	 */
 	private double vypocitaj_cel_sumu(){
 		double sum= 0;
 		for(Tovar t: this.tovar){

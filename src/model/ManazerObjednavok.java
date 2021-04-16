@@ -11,9 +11,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 
-/*
-Trieda ktora ma na starosti manazment objednavok, nie je to fyzicka osoba ale automatizovany proces, singleton.
-Priraduje objednavky pracovnikom, ked su vyrobene skladnikom a zaroven pozoruje vsetky objednavky
+/**
+*Trieda singleton, ktora ma na starosti manazment objednavok, nie je to fyzicka osoba ale automatizovany proces, singleton.
+*Priraduje objednavky pracovnikom, ked su vyrobene skladnikom a zaroven pozoruje vsetky objednavky
 pretoze pri kazdej zmene kontroluje ci uz je vyrobeny vsetok tovar a ci sa ma presunut skladnikovi.
  */
 public class ManazerObjednavok implements Serializable {
@@ -29,7 +29,11 @@ public class ManazerObjednavok implements Serializable {
             instancia  = new ManazerObjednavok();
         return instancia;
     }
-    //priradi pracovnikom objednavku
+
+    /**
+     * Priradí objednávku pracovníkom, ktorí majú na starosti výrobu špecifického tovaru, podľa počtu ich objednávok a poďla typu tovaru, v objednávke.
+     * @param o objednávka, ktorú priraďuje pracovníkom
+     */
     public void prirad_objednavku_pracovnikom(Objednavka o){
         //pomocne premnenne v pripade ze tam mam napr 2x rozne fotky aby som objednavku
         //nepriradil 2 roznym pracovnikom fotiek...
@@ -56,7 +60,13 @@ public class ManazerObjednavok implements Serializable {
             }
         }
     }
-    //najde najvhodnejsieho kandidata (ma najmensi pocet objednavok) ktoremu pracovnikovi priradit objednavku v zavislosti od tovaru t v objednavke
+    //
+
+    /**
+     * najde najvhodnejsieho kandidata (ma najmensi pocet objednavok) ktoremu pracovnikovi priradit objednavku v zavislosti od tovaru t v objednavke
+     * @param t
+     * @return pracovník s minimálnym počtom objednávok
+     */
     public Pracovnik najdi_min_vyroba(Tovar t) {
         Pracovnik min = null;
         int min_pocet = -1;
@@ -92,7 +102,13 @@ public class ManazerObjednavok implements Serializable {
         }
         return min;
     }
-    //vytvori novu objednavku a aktualizuje to s databazou vrati obejdnavku
+
+    /**
+     * Vytvorí novú objednávku, aktualizuje to s databázou a priradí danú objednávku pracovníkom.
+     * @param t
+     * @param k
+     * @return
+     */
     public boolean nova_objednavka(ArrayList<Tovar> t, Klient k){ //ako argumenty vsetok tovar a klient
         if(k==null) return false;
         int id = Databaza.getObjednavky().size()+1;
@@ -102,14 +118,22 @@ public class ManazerObjednavok implements Serializable {
         prirad_objednavku_pracovnikom(o);
         return true;
     }
-    //skontrolujem ci uz je objednavka cela vybavena ak je vybavena cela return true
+    /**
+     * Skontroluje stav objednávky
+     * @param o
+     * @return
+     */
     private boolean kontrola_stavu_obj(Objednavka o){
         for(Tovar t: o.tovar){
             if(t.getStav()==false) return false;
         }
         return true;
     }
-    //spracuje upozornenie od objednavky
+
+    /**
+     * Spracovanie upozornenia od objednávky. Skontroluje stav a ak je všetok tovar vyrobený, pripaví ju na odoslanie a priradí skladníkovi.
+     * @param o objednávka, ktorú kontrolujem
+     */
     public void upozorni(Objednavka o){
         if(this.kontrola_stavu_obj(o)){ //ak je hotova
             o.priprav_odoslanie();
@@ -117,7 +141,11 @@ public class ManazerObjednavok implements Serializable {
             //this.odstran_obj_pracovnikom(o);
         }
     }
-    //priradim konkretneho skladnika pre objednavku ktoru treba odoslat pretoze uz je vyrobena
+
+    /**
+     * Priradí vyrobenú objednávku skladníkovi na odoslanie.
+     * @param o
+     */
     public void prirad_skladnika(Objednavka o){
         Skladnik min_skl=null;
         int pocet = -1;
@@ -137,10 +165,5 @@ public class ManazerObjednavok implements Serializable {
         if(min_skl==null)
             return;
         min_skl.pridaj_objednavku(o);
-    }
-    public void odstran_obj_pracovnikom(Objednavka o){
-        for(Pracovnik p: this.pracovnici){
-            p.getObjednavky().remove(o); //ak tam je tak to odstrani ak nie nic sa nestane
-        }
     }
 }

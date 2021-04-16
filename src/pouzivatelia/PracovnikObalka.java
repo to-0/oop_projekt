@@ -7,8 +7,15 @@ import tovar.Fotka;
 import tovar.Obalka;
 import tovar.Tovar;
 
+/**
+ * Pracovník, ktorý vyrába obálky
+ */
 public class PracovnikObalka extends Pracovnik implements Vyroba{
-
+	/**
+	 * Metóda vyrob tovar, vyberá iba obálky z celej objednávky, kontroluje dostupnosť materiálov a spúšta stroj.
+	 * @param o objednávka, ktorej tovar idem vyrábať
+	 * @return true ak sa podarí vyrobiť false ak je nedostatok materálov.
+	 */
 	@Override
 	public boolean vyrob_tovar(Objednavka o) {
 		Obalka f = null;
@@ -17,13 +24,13 @@ public class PracovnikObalka extends Pracovnik implements Vyroba{
 			return false;
 		}
 		for(Tovar t: o.tovar){
-			if(!(t instanceof Obalka)) //preskakujem tovar ktory nema na starosti
+			if(!(t instanceof Obalka)) //preskakujem tovar ktory nema na starosti, v tomto pripade obalku
 				continue;
 			f = (Obalka) t;
+			//todo zmenit na tvrdy papier
 			double spotreba_papiera = f.vypocitaj_spotrebu_pap();
 			if(sklad.papier - spotreba_papiera <= 0){
 				sklad.upozorni_pozorovatelov();
-				//toto zmenit asi aby sa to vypisalo do v gui niekde, mozno cez return boolean a tam kontrolujem
 				this.getSpravy().pridaj_spravu("Nedostatok materialov");
 				return false;
 			}

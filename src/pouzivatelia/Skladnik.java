@@ -4,6 +4,9 @@ import model.Login;
 import model.Objednavka;
 import model.Spravy;
 
+/**
+ * Trieda má na starosti dopĺňanie materiálov a odosielanie, objednávok.
+ */
 public class Skladnik extends Zamestnanec {
 	public Skladnik(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);
@@ -13,10 +16,12 @@ public class Skladnik extends Zamestnanec {
 		System.out.println("Treba doplnit sklad...");
 		this.spravy.pridaj_spravu("Treba doplnit sklad");
 	}
-	public String sklad_stav(){
-		return sklad.vrat_stav();
-	}
-	//doplnim dany material podla t o mnozstvo double mnozstvo
+
+	/**
+	 * Doplní množstvo materiálu (podľa parametra t)
+	 * @param t ktorý material idem dopĺňať
+	 * @param mnozstvo ake množstvo
+	 */
 	public void dopln_sklad(int t,double mnozstvo){
 		switch(t){ //podla t-cka viem co idem doplnat
 			case 1:

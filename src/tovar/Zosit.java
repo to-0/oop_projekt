@@ -1,20 +1,25 @@
 package tovar;
 
-public class Zosit extends Tovar{
+/**
+ * Podtyp triedy Tovar, implementuje
+ * @see TonerSpotreba
+ *
+ */
+public class Zosit extends Tovar implements TonerSpotreba{
 	public Zosit(int mnozstvo, int typ) {
 		super(mnozstvo,typ);
-
+		this.pocet_stran = (int) Math.floor(Math.random()*(250-50+1)+50);
 	}
 	private int velkost;
+	/**
+	 * Počet strán
+	 */
 	private int pocet_stran;
-	public int getVelkost() {
-		return velkost;
-	}
 	public void setVelkost(int velkost) {
 		this.velkost = velkost;
 	}
-	public String getTyp() {
-		return String.valueOf(this.typ);
+	public int getTyp() {
+		return this.typ;
 	}
 	public int getPocet_stran() {
 		return pocet_stran;
@@ -24,9 +29,13 @@ public class Zosit extends Tovar{
 	}
 	@Override
 	public double vypocitaj_spotrebu_pap() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.pocet_stran*this.mnozstvo;
 	}
+
+	/**
+	 * Prekonaná toString
+	 * @return
+	 */
 	public String toString(){
 		String typ_zosita="";
 		switch(this.typ){

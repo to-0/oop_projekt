@@ -1,6 +1,9 @@
 package tovar;
 
-public class Fotka extends TovarRozmer{
+/**
+ *Podtyp tovaru s rozmermi.
+ */
+public class Fotka extends TovarRozmer implements TonerSpotreba{
 	public Fotka(int mnozstvo,int typ) { //3 typy proste
 		super(mnozstvo,typ);
 		this.cena_kus = 1;
@@ -49,7 +52,15 @@ public class Fotka extends TovarRozmer{
 		this.farebnost = farebnost;
 	}
 	private int typ;
+	/**
+	 * Farebnost fotky, boolean. Na základe farebnosti je aj vyššia spotreba
+	 */
 	private boolean farebnost;
+
+	/**
+	 * Vypočíta spotrebu papiera na základe množstva tovaru a typu dovaru.
+	 * @return
+	 */
 	public double vypocitaj_spotrebu_pap() {
 		switch(this.typ){
 			case 1:
@@ -62,18 +73,35 @@ public class Fotka extends TovarRozmer{
 				return this.mnozstvo*1.2;
 		}
 	}
+
+	/**
+	 * Vypočíta spotrebu tonera na základe typu  a farebnosti
+	 * @return  spotreba tonera v ml
+	 */
+	@Override
 	public double vypocitaj_spotrebu_tonera() { //v ml...
+		double sum;
 		switch(this.typ){
 			case 1:
-				return this.mnozstvo;
+				sum = this.mnozstvo;
+				break;
 			case 2:
-				return 0.7*this.mnozstvo;
+				sum =  0.7*this.mnozstvo;
+				break;
 			case 3:
-				return 1.2*this.mnozstvo;
+				 sum = 1.2*this.mnozstvo;
+				 break;
 			default:
-				return 1.3*this.mnozstvo;
+				sum = 1.3*this.mnozstvo;
 		}
+		if(this.farebnost) sum *= 1.5;
+		return sum;
 	}
+
+	/**
+	 *Prekonaná metóda toString
+	 * @return String v tvare "Fotka typ: "+this.typ+" mnozstvo:"+this.mnozstvo + "farebnost: "+farebnost+"\n test";
+	 */
 	public String toString(){
 		return "Fotka typ: "+this.typ+" mnozstvo:"+this.mnozstvo + "farebnost: "+farebnost+"\n test";
 	}

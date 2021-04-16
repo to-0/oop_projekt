@@ -4,12 +4,27 @@ import java.io.Serializable;
 
 import pouzivatelia.Pouzivatel;
 
+/**
+ * Abstraktná trieda definujúca základné atribúty pre tovar.
+ */
 public abstract class Tovar implements Serializable{
+	/**
+	 * Cena za kus
+	 */
 	double cena_kus;
+	/**
+	 * Množstvo tovaru.
+	 */
 	int mnozstvo;
 	String nazov;
 	//Pouzivatel pracovnik_vyroby;
+	/**
+	 * Stav či je tovar vyrobený
+	 */
 	boolean vyrobeny;
+	/**
+	 * Typ daného tovaru (zošit typu 1,2,3 atd.
+	 */
 	int typ;
 	public boolean getStav(){
 		return this.vyrobeny;

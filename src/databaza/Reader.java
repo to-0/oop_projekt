@@ -12,10 +12,18 @@ import java.util.Scanner;
 
 import model.Login;
 import model.Objednavka;
+
+/**
+ * Trieda, ktorá ma na starosti čítanie údajov z textových súborovv prípade , že zlyhá deserializácia.
+ */
 public class Reader {
 	static String uzivatelia_cesta =  System.getProperty("user.dir")+"\\src\\databaza\\pouzivatelia.txt";
 	static String objednavky_cesta =  System.getProperty("user.dir")+"\\src\\databaza\\objednavky.txt";
-	
+
+	/**
+	 * Načíta všetkách používateľov v súbore  pouziviatelia.txt
+	 * @return zoznam používateľov.
+	 */
 	public static ArrayList<Pouzivatel> nacitaj_pouz(){
 		ArrayList<Pouzivatel> list = new ArrayList<Pouzivatel>();
 		File f;
@@ -70,6 +78,10 @@ public class Reader {
 		scan.close();
 		return list;
 	}
+	/**
+	 * Načíta všetkv objednávky v súbore  objednavky.txt
+	 * @return zoznam objednávok.
+	 */
 	public static ArrayList<Objednavka> nacitaj_objednavky(){
 		ArrayList<Objednavka> list = new ArrayList<Objednavka>();
 		File f;

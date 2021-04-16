@@ -14,6 +14,9 @@ import sklad.Sklad;
 import tovar.*;
 import pouzivatelia.*;
 
+/**
+ * Statická trieda slúži na ukladanie údajov aplikácie, ako sú používatelia, objednávky a sklad.
+ */
 public class Databaza {
 	private  static ArrayList<Pouzivatel> users = new ArrayList<Pouzivatel>();
 	private static ArrayList<Objednavka> objednavky = new ArrayList<Objednavka>();
@@ -21,6 +24,10 @@ public class Databaza {
 		return users;
 	}
 	public static Sklad sklad;
+
+	/**
+	 * Inicializácia databázy. Ak sa nepodarí dáta deserializovať načíta ich z textového súboru.
+	 */
 	public static void init() {
 		if(!Databaza.deserializuj()) { //ked sa mi nepodari deserializovat vsetko
 			users = Reader.nacitaj_pouz();
@@ -47,6 +54,10 @@ public class Databaza {
 		//prirad_objednavky();
 
 	}
+
+	/**
+	 * Serializácia používateľov, objednávok a skladu.
+	 */
 	public static void serializuj(){
 		ObjectOutputStream outputStream;
 		System.out.println("Serializujem");
@@ -71,7 +82,10 @@ public class Databaza {
 			e.printStackTrace();
 		}
 	}
-	//priradim objednavky spravnym kleintom a manazerovovi dam vsetky, volam iba ked sa mi nepodari deserializovat
+
+	/**
+	 * Priradenie objednávok správnym klientom v príípade, že ich čítam z textového súboru a nepodarí sa mi deserializovať.
+ 	 */
 	public static void prirad_objednavky() {
 		for(Pouzivatel u:users) {
 			for(Objednavka o: objednavky) {
@@ -86,12 +100,24 @@ public class Databaza {
 			}
 		}
 	}
+
+	/**
+	 * Nájde používateľa s daným heslom a prihlasovacím menom.
+	 * @param nick prihlasovacie meno
+	 * @param pass heslo
+	 * @return
+	 */
 	public static Pouzivatel find_user(String nick, String pass){
 		for(Pouzivatel u: users){
 			if(u.validuj(nick,pass))  return u;
 		}
 		return null;
 	}
+
+	/**
+	 * Deserializácia používateľov, objednávok a skladu.
+	 * @return
+	 */
 	public static boolean deserializuj() {
 		try {
 			ObjectInputStream inputStream3 = new ObjectInputStream(new FileInputStream("sklad.out"));
@@ -142,6 +168,11 @@ public class Databaza {
             System.out.println("Pri citani nastal nejaky problem.");
         }
 	}
+
+	/**
+	 * Vráti zoznam pracovníkov výroby.
+	 * @return
+	 */
 	public static ArrayList<Pracovnik> vrat_vyrobu(){ //vrati iba pracovnikov vyroby
 		ArrayList<Pracovnik> pracovnici = new ArrayList<>();
 		for(Pouzivatel p: users){

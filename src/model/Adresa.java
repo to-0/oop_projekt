@@ -1,10 +1,22 @@
 package model;
 
 import java.io.Serializable;
-//trieda Adresa sluzi iba na ulozenie adresy klienta
+
+/**
+ * Trieda Adresa sluzi iba na ulozenie adresy klienta.
+ */
 public class Adresa implements Serializable{
+	/**
+	 * Ulica
+	 */
 	private String ulica;
+	/**
+	 * Obec
+	 */
 	private String obec;
+	/**
+	 * číslo domu.
+	 */
 	private String cislo;
 	
 	
@@ -17,7 +29,11 @@ public class Adresa implements Serializable{
 	public String getUlica() {
 		return ulica;
 	}
-	//toString na vypis adresy
+
+	/**
+	 * Vytvorí string z adresy.
+	 * @return
+	 */
 	public String toString() {
 		return this.ulica+" "+this.cislo+" "+this.obec;
 	}

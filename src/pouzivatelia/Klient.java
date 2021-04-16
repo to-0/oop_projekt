@@ -2,8 +2,9 @@ package pouzivatelia;
 
 import model.Adresa;
 import model.Login;
-/*
-Klient si objednava objednavky. Ma navyse adresu a prekonanu toString metodu
+
+/**
+ * Podtrieda používateľa, klient si vytvára objednávky.
  */
 public class Klient extends Pouzivatel{
 	private Adresa adresa;
@@ -17,6 +18,11 @@ public class Klient extends Pouzivatel{
 	public void setAdresa(Adresa adresa) {
 		this.adresa = adresa;
 	}
+
+	/**
+	 * Prekonaná metóda toString
+	 * @return String v tvare Meno klienta: meno Telefon: telefon Email: email Adresa: adresa
+	 */
 	public String toString(){ //prekonavanie polymorfizmus
 		String s = "";
 		s+= "Meno klienta:" +this.meno + "\nTelefon: " + this.telefon + "\n"+

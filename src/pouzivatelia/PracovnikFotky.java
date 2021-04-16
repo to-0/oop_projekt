@@ -8,6 +8,10 @@ import tovar.Tovar;
 import java.awt.*;
 import javafx.scene.control.TextArea;
 
+/**
+ * Pracovnik, torý ma na starosti výrobu fotiek. Implementuje rozhranie
+ * @see pouzivatelia.Vyroba
+ */
 public class PracovnikFotky extends Pracovnik implements Vyroba{
 	public PracovnikFotky(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);
@@ -15,6 +19,11 @@ public class PracovnikFotky extends Pracovnik implements Vyroba{
 		this.typPracovnika = TypStroja.FOTKA;
 	}
 
+	/**
+	 * Metóda vyrob tovar, vyberá iba fotky z celej objednávky, kontroluje dostupnosť materiálov a spúšta stroj.
+	 * @param o objednávka, ktorej tovar idem vyrábať
+	 * @return true ak sa podarí vyrobiť false ak je nedostatok materálov.
+	 */
 	@Override
 	public boolean vyrob_tovar(Objednavka o) {
 		Fotka f = null;

@@ -1,7 +1,11 @@
 package model;
-/*
-Interface ktory definuje funkciu notify s argumentom sprava.
- */
+/**
+ * Interface, ktory sluzi na pozorovanie správ, definuje metódu notify
+ **/
 public interface PozorovatelSprav {
+    /**
+     *
+     * @param sprava String novej spravy
+     */
     public void  notify(String sprava);
 }

@@ -7,6 +7,9 @@ import databaza.Databaza;
 import pouzivatelia.Pouzivatel;
 import pouzivatelia.Skladnik;
 
+/**
+ * Singleton trieda, obsahuje množstvo materálov v sklade.
+ */
 public class Sklad implements Serializable {
 	public double papier;
 	public static Sklad instance=null;
@@ -26,21 +29,38 @@ public class Sklad implements Serializable {
 	public  double toner;
 	public  double foto_papier;
 	public  ArrayList<Skladnik> pozorovatelia;
-	//upozorni skladnikov ze treba doplnit sklad
+
+	/**
+	 * Upozorní všetkých skladníkov.
+	 */
 	public void upozorni_pozorovatelov(){
 		for(Skladnik s: this.pozorovatelia){
 			s.upozorni();
 		}
 	}
+
+	/**
+	 * Vráti stav skladu
+	 * @return String kde je celý stav skladu
+	 */
 	public String vrat_stav(){
 		return "Papier "+ this.papier +"\n Foto papier "+this.foto_papier +"\n Toner "+this.toner +"\n Tvrdy papier "+this.tvrdy_papier;
 	}
 	public static void setInstance(Sklad sklad){
 		instance = sklad;
 	}
+
+	/**
+	 * Pridá pozorovateľa skladu.
+	 * @param s Pozorovatel typu Skladník
+	 */
 	public void pridajPozorovatela(Skladnik s){
 		this.pozorovatelia.add(s);
 	}
+
+	/**
+	 * Nastaví pozorovateľov, všetkých skladníkov.
+	 */
 	public void nastav_pozorovatelov(){
 		for (Pouzivatel p: Databaza.getUsers()){
 			if(p instanceof Skladnik){

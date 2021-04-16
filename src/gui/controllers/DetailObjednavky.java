@@ -13,8 +13,15 @@ import pouzivatelia.Vyroba;
 import tovar.Tovar;
 
 import java.util.ArrayList;
-
+/**
+ * <p>Controller pre scénu detail objednávky.
+ * </p>
+ *
+ */
 public class DetailObjednavky extends AController implements PozorovatelSprav {
+    /**
+     * Objednávka ktorej detail zobrazujeme.
+     */
     Objednavka o;
     ObservableList<String> myList = FXCollections.<String>observableArrayList();
     ArrayList<String> spravy;
@@ -29,6 +36,12 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
     Label sprava;
     @FXML
     Button odosli_b;
+    /**
+     *Metóda sa volá pri prepínaní scény na detail objednávky. Inicializuje celú scénu.
+    *@param o konkrétna objednávka
+   * @param p pouzivatel
+     *@param spravy TextArea, ktorý bude zobrazovať správy na domovskej obrazovke.
+     **/
     public void zobraz_detail(Objednavka o, Pouzivatel p, TextArea spravy){
         this.p=p;
         this.o=o;
@@ -55,6 +68,12 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
             odosli_b.setVisible(true);
         }
     }
+
+    /**
+     * Prekonaná metóda zobraz detail, ktorú volám keď si chcem pozrieť detail vybavenej objednávky.
+     * @param o objednavka
+     * @param p pouzivatel
+     */
     public void zobraz_detail(Objednavka o, Pouzivatel p){ //toto volam pri vybavenych objednavkach
         this.p=p;
         this.o=o;

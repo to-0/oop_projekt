@@ -19,9 +19,15 @@ import pouzivatelia.Zamestnanec;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Controller domovskej obrazovky.
+ */
 public class HomeController   extends AController {
     //private Pouzivatel p;
     //private FXCollections
+    /**
+     * Objednávky prihlaseného používateľa.
+     */
     private ArrayList<Objednavka> p_objednavky;
     private ObservableList<Objednavka> doList;
     //public ArrayList<String> spravy;
@@ -39,6 +45,12 @@ public class HomeController   extends AController {
     public void initialize() {
 
     }
+
+    /**
+     * Inicializuje scénu, naplní list objednávok, nastaví atribúty triedy, zobrazí tlačidlá v súvislosti s typom používateľa.
+     * @param u prihlásený používateľ
+     * @param objednavky_u objednávky používateľa
+     */
     public void setData(Pouzivatel u, ArrayList<Objednavka> objednavky_u){
         this.p = u;
         this.p_objednavky = new ArrayList<Objednavka>(objednavky_u);
@@ -57,6 +69,11 @@ public class HomeController   extends AController {
         objednavky_list.getItems().addAll(this.doList);
         //spravy = new ArrayList<>(); //potrebujem vynulovat spravy
     }
+
+    /**
+     * Spracovanie akcie kliknutia na button pre novú objednávku. Načíta scénu novej objednávky a prepne controller. Zmení sa celá scéna.
+     * @param e ActionEvent cez ktorý v metóde získavam stage.
+     */
     public void zobraz_nova_objednavka(ActionEvent e){ //nacitanie sceny nova objednavkaa prepnutie do tejto sceny
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/nova_objednavka.fxml"));
@@ -71,6 +88,10 @@ public class HomeController   extends AController {
         }
 
     }
+
+    /**
+     * Sppracovanie akcie kliknutia na zobrazenie detailu vybranej objednávky.
+     */
     public void zobrazObjednavku(){ //zobrazenie detailov objednavky ale taktiez cez tieto detaily pracovnici vyrabaju dany tovar pre objednavku
        try{
            int index = objednavky_list.getSelectionModel().getSelectedIndex();
@@ -86,6 +107,10 @@ public class HomeController   extends AController {
         //Parent root = FXMLLoader.load(getClass().getResource("../sceny/home.fxml"));
     }
 
+    /**
+     * Sppracovanie akcie kliknutia na zobrazenie skladu.
+     * @throws IOException
+     */
     public void zobrazSklad() throws IOException{ //zobrazenie stavu skladu a tiez na doplnenie skladu
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/sklad.fxml"));
         Parent root = loader.load();
@@ -94,10 +119,20 @@ public class HomeController   extends AController {
         zobraz_okno(root,500,300);
 
     }
+
+    /**
+     * Vyčistí správy používateľa a zároven textarea ktorý tieto správy zobrazuje.
+     */
     public void vycisti(){ //iba na vycistenie sprav a textarea sprav
         this.p.getSpravy().vycistiSpravy();
         this.spravy_akcii.setText("");
     }
+
+    /**
+     * Sppracovanie akcie kliknutia na zobrazenie vybavených objenávok..
+     * @param e ActionEvent cez ktorý v metóde získavam stage.
+     * @throws Exception
+     */
     public void vybavene_objednavky(ActionEvent e) throws Exception{ //handle na kliknutie buttonu vybavene objednavky, kde prepnem scenu a zobrazim list uz vybavenych objednavok
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/vybavene_objednavky_scena.fxml"));
         Parent root = loader.load();
@@ -106,7 +141,11 @@ public class HomeController   extends AController {
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
         zobraz_okno(root,400,500,stage);
     }
+
+    /**
+     * Serializácia používateľov, objednávok a skladu.
+     */
     public void uloz_akcia(){
         Databaza.serializuj();
-    } //ulozenie stavu aplikacie (pouzivatelia, objednavky  a sklad)
+    }
 }

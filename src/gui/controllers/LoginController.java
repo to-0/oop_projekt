@@ -18,6 +18,10 @@ import pouzivatelia.Pouzivatel;
 
 import java.util.ArrayList;
 
+/**
+ * Controller pre login scenu.
+ */
+
 public class LoginController  extends AController {
 	@FXML
 	Label message;

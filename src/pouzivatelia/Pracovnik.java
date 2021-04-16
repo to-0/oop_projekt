@@ -7,8 +7,13 @@ import tovar.Obalka;
 import tovar.Tovar;
 import tovar.Zosit;
 
-//pracovnik vyraba dany tovar ktory mu je priradeny
+/**
+ * Podtyp zamestnanca, pracovník ktorý vyrába tovar.
+ */
 public class Pracovnik extends Zamestnanec{
+    /**
+     * Jeho vlastný stroj
+     */
     protected Stroj stroj;
     protected TypStroja  typPracovnika;
 
@@ -16,6 +21,12 @@ public class Pracovnik extends Zamestnanec{
         super(id,meno,login,telefon,email);
        this.sklad = Sklad.getInstance();
     }
+
+    /**
+     * Metóda ktorá skontroluje stav tovaru, vráti true ak najde aspon jeden nevyrobeny tovar v objednávke.
+     * @param o objednavka
+     * @return boolean
+     */
     public boolean skontroluj_stav_tovaru(Objednavka o){ //vrati true ak najde aspon jeden nevyrobeny co ma na starosti
         for(Tovar t: o.tovar){
             if(t instanceof Fotka && typPracovnika==TypStroja.FOTKA){

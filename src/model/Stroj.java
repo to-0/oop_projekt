@@ -9,24 +9,40 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/*
-
+/**
+ * Trieda Stroj, vyrába tovar.
  */
 public class Stroj implements Serializable {
     private  TypStroja typ;
     String nazov;
+    /**
+     * Pracovník, ktorý ma na starosti stroj.
+     */
     Pracovnik pracovnik;
     public Stroj(TypStroja t, String nazov, Pracovnik pracovnik){
         this.typ = t;
         this.nazov = nazov;
         this.pracovnik = pracovnik;
     }
+
+    /**
+     * Metóda spustí proces výroby v novom threade.
+     * @param t tovar, ktorý ide na výrobu
+     * @param o objednávka v ktorej je tovar
+     */
     public void spusti_proces(Tovar t,Objednavka o){ //tu vytvorim novu nit a zacnem proces vyroby
         System.out.println("Spustam proces vyroby");
         ProcesVyroby proces= new ProcesVyroby(this,t,o);
         proces.start();
     }
     //metoda ktora je volana z ineho vlakna
+
+    /**
+     * Metóda ktorá sa volá z nového vlákna. Vyrobí tovar a, nachvíľu zastaví thread a pridá správu o vyrobení pracovníkovi.
+     * @param t tovar
+     * @param o objednavka
+     * @throws InterruptedException
+     */
     public synchronized void zacni_vyrabat(Tovar t,Objednavka o) throws InterruptedException {
         System.out.println("Vyrabam tovar...");
         this.pracovnik.getSpravy().pridaj_spravu("Vyrabam tovar...");
