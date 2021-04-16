@@ -31,12 +31,26 @@ public class Stroj implements Serializable {
      * @param o objednávka v ktorej je tovar
      */
     public void spusti_proces(Tovar t,Objednavka o){ //tu vytvorim novu nit a zacnem proces vyroby
+        //NESTED CLASS
+        class ProcesVyroby extends Thread{
+            Stroj stroj;
+            public ProcesVyroby(Stroj  stroj){
+                this.stroj = stroj;
+            }
+            @Override
+            public void run() {
+                try{
+                    this.stroj.zacni_vyrabat(t,o);
+                    super.run();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         System.out.println("Spustam proces vyroby");
-        ProcesVyroby proces= new ProcesVyroby(this,t,o);
+        ProcesVyroby proces= new ProcesVyroby(this);
         proces.start();
     }
-    //metoda ktora je volana z ineho vlakna
-
     /**
      * Metóda ktorá sa volá z nového vlákna. Vyrobí tovar a, nachvíľu zastaví thread a pridá správu o vyrobení pracovníkovi.
      * @param t tovar
@@ -54,7 +68,7 @@ public class Stroj implements Serializable {
         this.pracovnik.getSpravy().pridaj_spravu("Tovar bol vyrobeny "+formatter.format(date)); //pridam spravu pracovnikovi cim spustim cely proces vypisania tejto spravy do gui pomocou notify
         //spravy_stroja.appendText("Tovar bol vyrobeny "+formatter.format(date));
         o.upozorni_pozorovatela();
-        //ProcesVyroby proces = new ProcesVyroby(t);
+        //ProcesVyroby_old proces = new ProcesVyroby_old(t);
        // proces.run();
     }
 }

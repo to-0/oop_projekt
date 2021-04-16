@@ -4,6 +4,7 @@ import javafx.scene.control.TextArea;
 import model.*;
 import sklad.Sklad;
 import tovar.Fotka;
+import tovar.TonerSpotreba;
 import tovar.Tovar;
 import tovar.Zosit;
 

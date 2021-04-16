@@ -3,6 +3,7 @@ package pouzivatelia;
 import model.*;
 import sklad.Sklad;
 import tovar.Fotka;
+import tovar.TonerSpotreba;
 import tovar.Tovar;
 
 import java.awt.*;
@@ -43,7 +44,7 @@ public class PracovnikFotky extends Pracovnik implements Vyroba{
 			}
 			//TODO odcitanie materialov zo skladu
 			this.stroj.spusti_proces(t,o);
-			//ProcesVyroby proces = new ProcesVyroby(t,o);
+			//ProcesVyroby_old proces = new ProcesVyroby_old(t,o);
 			//proces.start();
 		}
 		return true;
