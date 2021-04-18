@@ -23,13 +23,13 @@ public class PracovnikObalka extends Pracovnik implements Vyroba{
 			System.out.println("Tovar uz bol vyrobeny");
 			return false;
 		}
-		for(Tovar t: o.tovar){
+		for(Tovar t: o.getTovar()){
 			if(!(t instanceof Obalka)) //preskakujem tovar ktory nema na starosti, v tomto pripade obalku
 				continue;
 			f = (Obalka) t;
 			//todo zmenit na tvrdy papier
 			double spotreba_papiera = f.vypocitaj_spotrebu_pap();
-			if(sklad.papier - spotreba_papiera <= 0){
+			if(sklad.tvrdy_papier - spotreba_papiera <= 0){
 				sklad.upozorni_pozorovatelov();
 				this.getSpravy().pridaj_spravu("Nedostatok materialov");
 				return false;

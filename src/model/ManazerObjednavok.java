@@ -42,7 +42,7 @@ public class ManazerObjednavok implements Serializable {
         int p3=0; // uz som priradil pracovnika na obalku
         Pracovnik pracovnik = null;
         //pre kazdy tovar priradim pravcovnika, ak je tam nejaky tovar viac krat priradim to vsetko iba jednemu pracovnikovi
-        for(Tovar t: o.tovar){
+        for(Tovar t: o.getTovar()){
             if(t instanceof Fotka && p1!=1){
                 pracovnik = this.najdi_min_vyroba(t);
                 p1=1;
@@ -57,6 +57,7 @@ public class ManazerObjednavok implements Serializable {
             }
             if(pracovnik !=null){
                 pracovnik.getObjednavky().add(o); //ak som nasiel vyhovujuceho pracovnika tak priradim objednavku
+                pracovnik.inc_pocet_obj();
             }
         }
     }
@@ -124,7 +125,7 @@ public class ManazerObjednavok implements Serializable {
      * @return
      */
     private boolean kontrola_stavu_obj(Objednavka o){
-        for(Tovar t: o.tovar){
+        for(Tovar t: o.getTovar()){
             if(t.getStav()==false) return false;
         }
         return true;
@@ -165,5 +166,17 @@ public class ManazerObjednavok implements Serializable {
         if(min_skl==null)
             return;
         min_skl.pridaj_objednavku(o);
+        this.zniz_aktivne_obj_pracovnikom(o);
+    }
+    private void zniz_aktivne_obj_pracovnikom(Objednavka o){
+        for(Tovar t: o.getTovar()){
+            for(Pouzivatel p: Databaza.getUsers())
+            {
+                if( (p instanceof  Pracovnik) && (p.getObjednavky().contains(t))){
+                    p.dec_pocet_obj();
+                }
+            }
+        }
+
     }
 }

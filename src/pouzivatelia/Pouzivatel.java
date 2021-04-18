@@ -30,8 +30,11 @@ public abstract class Pouzivatel implements Serializable{
 	public int get_pocetobj() {
 		return this.pocet_obj;
 	}
-	public void set_pocetobj(int pocet) {
-		this.pocet_obj = pocet;
+	public void inc_pocet_obj() {
+		this.pocet_obj++;
+	}
+	public void dec_pocet_obj(){
+		this.pocet_obj--; //pocet aktivtnych objednavok
 	}
 	public Pouzivatel(int id, String meno, Login login,String telefon, String email) {
 		this.meno = meno;

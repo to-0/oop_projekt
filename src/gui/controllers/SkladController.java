@@ -40,6 +40,9 @@ public class SkladController extends  AController implements PozorovatelSprav {
             case "Toner(ml)":
                 t=3;
                 break;
+            case "Tvrdy papier":
+                t=4;
+                break;
         }
         int x = Integer.parseInt(mnozstvo.getText());
         ((Skladnik)this.p).dopln_sklad(t,x);

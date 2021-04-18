@@ -19,6 +19,7 @@
                 <String fx:value="Papier(ks)"/>
                 <String fx:value="Fotopapier(ks)" />
                 <String fx:value="Toner(ml)" />
+                <String fx:value="Tvrdy papier" />
             </FXCollections>
         </items>
     </ChoiceBox>

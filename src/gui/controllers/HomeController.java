@@ -11,10 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import model.Objednavka;
-import pouzivatelia.Klient;
-import pouzivatelia.Pouzivatel;
-import pouzivatelia.Skladnik;
-import pouzivatelia.Zamestnanec;
+import pouzivatelia.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,6 +39,8 @@ public class HomeController   extends AController {
     @FXML
     Button nova_obj;
     @FXML
+    Button admin_b;
+    @FXML
     public void initialize() {
 
     }
@@ -67,6 +66,7 @@ public class HomeController   extends AController {
         sklad_butt.setVisible(p instanceof Zamestnanec);
         nova_obj.setVisible(p instanceof Klient);
         objednavky_list.getItems().addAll(this.doList);
+        admin_b.setVisible(this.p instanceof Manazer);
         //spravy = new ArrayList<>(); //potrebujem vynulovat spravy
     }
 
@@ -147,5 +147,12 @@ public class HomeController   extends AController {
      */
     public void uloz_akcia(){
         Databaza.serializuj();
+    }
+    public void admin_akcia() throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/admin_scena.fxml"));
+        Parent root = loader.load();
+        AdminController controller = loader.<AdminController>getController();
+        controller.inicializuj((Manazer)this.p);
+        zobraz_okno(root,500,500);
     }
 }

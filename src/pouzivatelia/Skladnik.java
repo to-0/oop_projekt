@@ -34,6 +34,9 @@ public class Skladnik extends Zamestnanec {
 			case 3:
 				this.sklad.toner += mnozstvo;
 				break;
+			case 4:
+				this.sklad.tvrdy_papier += mnozstvo;
+				break;
 		}
 	}
 	public void odosli_objednavku(Objednavka o){ //vybavi objednavku

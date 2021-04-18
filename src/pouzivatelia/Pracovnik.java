@@ -28,7 +28,7 @@ public class Pracovnik extends Zamestnanec{
      * @return boolean
      */
     public boolean skontroluj_stav_tovaru(Objednavka o){ //vrati true ak najde aspon jeden nevyrobeny co ma na starosti
-        for(Tovar t: o.tovar){
+        for(Tovar t: o.getTovar()){
             if(t instanceof Fotka && typPracovnika==TypStroja.FOTKA){
                 if(t.getStav()==false) return true;
             }

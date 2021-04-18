@@ -15,13 +15,13 @@ public abstract class Tovar implements Serializable{
 	/**
 	 * Množstvo tovaru.
 	 */
-	int mnozstvo;
+	protected int mnozstvo;
 	String nazov;
 	//Pouzivatel pracovnik_vyroby;
 	/**
 	 * Stav či je tovar vyrobený
 	 */
-	boolean vyrobeny;
+	protected boolean vyrobeny;
 	/**
 	 * Typ daného tovaru (zošit typu 1,2,3 atd.
 	 */
@@ -53,5 +53,7 @@ public abstract class Tovar implements Serializable{
 	public double vypocitaj_cenu(){
 		return this.cena_kus*this.mnozstvo;
 	}
-
+	public int getMnozstvo(){
+		return this.mnozstvo;
+	}
 }

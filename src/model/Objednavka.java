@@ -18,11 +18,11 @@ public class Objednavka implements Serializable{
 	/**
 	 * Zoznam tovarov v objednávke
 	 */
-	public ArrayList<Tovar> tovar = new ArrayList<Tovar>();
+	private ArrayList<Tovar> tovar = new ArrayList<Tovar>();
 	/**
 	 * Celková suma ojednávky.
 	 */
-	double suma;
+	private double suma;
 	/**
 	 * Vybavenost tovaru
 	 */
@@ -31,8 +31,14 @@ public class Objednavka implements Serializable{
 	 * Pripravenost objednávky na odoslanie
 	 */
 	private boolean pripravena; //je pripravena na odoslanie skladnikom? t.j. ci je vyrobeny vsetok tovar co ma
+	public ArrayList<Tovar> getTovar(){
+		return this.tovar;
+	}
 	public boolean get_stav(){
 		return this.vybavena;
+	}
+	public double getSuma(){
+		return this.suma;
 	}
 	public void vybav(){
 		this.vybavena = true;

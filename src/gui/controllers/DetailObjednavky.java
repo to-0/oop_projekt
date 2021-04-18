@@ -48,7 +48,7 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
         klient.setText(o.getKlient().toString());
         String s="";
         this.spravy_home = spravy;
-        for(Tovar t: o.tovar){
+        for(Tovar t: o.getTovar()){
             s += " "+t.toString() +"\n";
         }
         tovar.setText(s);
@@ -79,7 +79,7 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
         this.o=o;
         klient.setText(o.getKlient().toString());
         StringBuilder s= new StringBuilder();
-        for(Tovar t: o.tovar){
+        for(Tovar t: o.getTovar()){
             s.append(" ").append(t.toString()).append("\n");
         }
         tovar.setText(s.toString());

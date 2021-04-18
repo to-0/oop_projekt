@@ -17,6 +17,7 @@ public class Spravy implements Serializable { //pozorovatel je jeden controller
     transient PozorovatelSprav pozorovatel; //jeden pozorovatel vzdy
     public Spravy(){
         this.spravy = new ArrayList<>();
+        this.pozorovatel = null;
     }
 
     /**
@@ -26,7 +27,7 @@ public class Spravy implements Serializable { //pozorovatel je jeden controller
     public void pridaj_spravu(String sprava){
         this.spravy.add(sprava);
         System.out.println("Pridal som spravu");
-        this.pozorovatel.notify(sprava);
+        if (this.pozorovatel!=null)this.pozorovatel.notify(sprava);
     }
 
     /**

@@ -23,6 +23,8 @@
             text="Vycisti Spravy" onAction="#vycisti"></Button>
     <Button GridPane.columnIndex="1" GridPane.rowIndex="6"
             text="Uloz" onAction="#uloz_akcia"></Button>
+    <Button GridPane.columnIndex="2" GridPane.rowIndex="6" fx:id="admin_b"
+            text="Admin" onAction="#admin_akcia"></Button>
 
     <Button GridPane.columnIndex="4" GridPane.rowIndex="5"
             text="Odhlas" onAction="#odhlas"></Button>

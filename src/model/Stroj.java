@@ -60,7 +60,11 @@ public class Stroj implements Serializable {
     public synchronized void zacni_vyrabat(Tovar t,Objednavka o) throws InterruptedException {
         System.out.println("Vyrabam tovar...");
         this.pracovnik.getSpravy().pridaj_spravu("Vyrabam tovar...");
-        Thread.sleep(5000); //pockam 5sekund, neskor asi zmenim podla poctu tovaru
+        if(t.getMnozstvo()<=10)
+            Thread.sleep(5000); //pockam 5sekund, neskor asi zmenim podla poctu tovaru
+        else{
+            Thread.sleep(500*t.getMnozstvo());
+        }
         t.vybav();
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

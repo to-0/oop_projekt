@@ -10,14 +10,10 @@ public class Zosit extends Tovar implements TonerSpotreba{
 		super(mnozstvo,typ);
 		this.pocet_stran = (int) Math.floor(Math.random()*(250-50+1)+50);
 	}
-	private int velkost;
 	/**
 	 * Počet strán
 	 */
 	private int pocet_stran;
-	public void setVelkost(int velkost) {
-		this.velkost = velkost;
-	}
 	public int getTyp() {
 		return this.typ;
 	}

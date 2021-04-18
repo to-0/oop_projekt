@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.collections.FXCollections?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="gui.controllers.AdminController"
+      prefHeight="400.0" prefWidth="600.0">
+<TextArea fx:id="zoznam_zamestnancov">
+
+</TextArea>
+    <ListView fx:id="zoznam"></ListView>
+    <Button text="Detail zamestnanca" onAction="#detail_zamestnanca"></Button>
+    <Button text="Pridaj zamestnanca" onAction="#pridaj_zamestnanca"></Button>
+    <ChoiceBox fx:id="typ_zamestnanca">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Skladnik"/>
+                <String fx:value="PracovnikF" />
+                <String fx:value="PracovnikO" />
+                <String fx:value="PracovnikZ" />
+            </FXCollections>
+        </items>
+    </ChoiceBox>
+    <Label text="Meno"></Label>
+    <TextField fx:id="meno"></TextField>
+    <Label text="Email"></Label>
+    <TextField fx:id="email"></TextField>
+    <Label text="Telefon"></Label>
+    <TextField fx:id="telefon"></TextField>
+    <Label text="Prihlasovacie meno"></Label>
+    <TextField fx:id="pr_m"></TextField>
+    <Label text="Heslo"></Label>
+    <PasswordField fx:id="heslo"></PasswordField>
+</VBox>

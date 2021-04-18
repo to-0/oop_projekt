@@ -23,7 +23,7 @@ public class PracovnikZosit extends Pracovnik implements Vyroba {
 	@Override
 	public boolean vyrob_tovar(Objednavka o){ //text area na vypisovanie
 		Zosit z = null;
-		for(Tovar t: o.tovar){
+		for(Tovar t: o.getTovar()){
 			if(!(t instanceof Zosit)) //preskakujem tovar ktory nema na starosti
 				continue;
 			z = (Zosit) t;

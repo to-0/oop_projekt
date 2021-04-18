@@ -28,7 +28,7 @@ public class PracovnikFotky extends Pracovnik implements Vyroba{
 	@Override
 	public boolean vyrob_tovar(Objednavka o) {
 		Fotka f = null;
-		for(Tovar t: o.tovar){ //prechadzam vsetok tovar
+		for(Tovar t: o.getTovar()){ //prechadzam vsetok tovar
 			if(!(t instanceof Fotka)) //preskakujem tovar ktory nema na starosti
 				continue;
 			f = (Fotka) t;
