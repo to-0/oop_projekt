@@ -9,7 +9,7 @@ import model.PozorovatelSprav;
 import pouzivatelia.Pouzivatel;
 import pouzivatelia.Pracovnik;
 import pouzivatelia.Skladnik;
-import pouzivatelia.Vyroba;
+import pouzivatelia.ObjSpracovanie;
 import tovar.Tovar;
 
 import java.util.ArrayList;
@@ -34,8 +34,6 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
     Button vyrob_b;
     @FXML
     Label sprava;
-    @FXML
-    Button odosli_b;
     /**
      *Metóda sa volá pri prepínaní scény na detail objednávky. Inicializuje celú scénu.
     *@param o konkrétna objednávka
@@ -52,7 +50,6 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
             s += " "+t.toString() +"\n";
         }
         tovar.setText(s);
-        odosli_b.setVisible(false);
         if(p instanceof Pracovnik && ((Pracovnik) p).skontroluj_stav_tovaru(o)){
             ((Pracovnik)this.p).getSpravy().setPozorovatel(this);
             vyrob_b.setVisible(true);
@@ -65,7 +62,8 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
             vyrob_b.setVisible(false);
         }
         if(p instanceof Skladnik && o.getPripravenost() && !o.get_stav()){ //je pripravena na odoslanie ale este nebola odoslana
-            odosli_b.setVisible(true);
+            vyrob_b.setVisible(true);
+            vyrob_b.setText("Odosli objednavku");
         }
     }
 
@@ -84,11 +82,10 @@ public class DetailObjednavky extends AController implements PozorovatelSprav {
         }
         tovar.setText(s.toString());
         //ked je objednavka vybavene nebudem zobrazovat ziadny button...
-        odosli_b.setVisible(false);
         vyrob_b.setVisible(false);
     }
     public void vyrob_button(){
-        ((Vyroba)this.p).vyrob_tovar(this.o);
+        ((ObjSpracovanie)this.p).spracuj_obj(this.o);
     }
     public void odosli_button(){
         ((Skladnik)this.p).odosli_objednavku(this.o);

@@ -1,23 +1,20 @@
 package pouzivatelia;
 
-import javafx.scene.control.TextArea;
 import model.*;
-import sklad.Sklad;
-import tovar.Fotka;
 import tovar.Obalka;
 import tovar.Tovar;
 
 /**
  * Pracovník, ktorý vyrába obálky
  */
-public class PracovnikObalka extends Pracovnik implements Vyroba{
+public class PracovnikObalka extends Pracovnik implements ObjSpracovanie {
 	/**
 	 * Metóda vyrob tovar, vyberá iba obálky z celej objednávky, kontroluje dostupnosť materiálov a spúšta stroj.
 	 * @param o objednávka, ktorej tovar idem vyrábať
 	 * @return true ak sa podarí vyrobiť false ak je nedostatok materálov.
 	 */
 	@Override
-	public boolean vyrob_tovar(Objednavka o) {
+	public boolean spracuj_obj(Objednavka o) {
 		Obalka f = null;
 		if(!this.skontroluj_stav_tovaru(o)){ //pracovnik uz vyrobil vsetko co mohol
 			System.out.println("Tovar uz bol vyrobeny");

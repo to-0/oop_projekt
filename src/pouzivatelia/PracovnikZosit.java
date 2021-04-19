@@ -1,19 +1,13 @@
 package pouzivatelia;
 
-import javafx.scene.control.TextArea;
 import model.*;
-import sklad.Sklad;
-import tovar.Fotka;
-import tovar.TonerSpotreba;
 import tovar.Tovar;
 import tovar.Zosit;
-
-import javax.xml.soap.Text;
 
 /**
  * Pracovník ktorý má na starosti výrobu zošitov.
  */
-public class PracovnikZosit extends Pracovnik implements Vyroba {
+public class PracovnikZosit extends Pracovnik implements ObjSpracovanie {
 	//tu skontrolujem ci mam dostatok surovin na ZOSIT(y) a potom to dam vyrobit mojmu stroju
 	/**
 	 * Metóda vyrob tovar, vyberá iba zosity z celej objednávky, kontroluje dostupnosť materiálov a spúšta stroj.
@@ -21,7 +15,7 @@ public class PracovnikZosit extends Pracovnik implements Vyroba {
 	 * @return true ak sa podarí vyrobiť false ak je nedostatok materálov.
 	 */
 	@Override
-	public boolean vyrob_tovar(Objednavka o){ //text area na vypisovanie
+	public boolean spracuj_obj(Objednavka o){ //text area na vypisovanie
 		Zosit z = null;
 		for(Tovar t: o.getTovar()){
 			if(!(t instanceof Zosit)) //preskakujem tovar ktory nema na starosti

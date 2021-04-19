@@ -1,9 +1,7 @@
 package model;
 
 import pouzivatelia.Pracovnik;
-import pouzivatelia.Vyroba;
 import tovar.Tovar;
-import javafx.scene.control.*;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;

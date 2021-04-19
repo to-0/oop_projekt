@@ -7,7 +7,7 @@ import model.Spravy;
 /**
  * Trieda má na starosti dopĺňanie materiálov a odosielanie, objednávok.
  */
-public class Skladnik extends Zamestnanec {
+public class Skladnik extends Zamestnanec implements ObjSpracovanie{
 	public Skladnik(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);
 		this.spravy = new Spravy();
@@ -43,4 +43,9 @@ public class Skladnik extends Zamestnanec {
 			o.vybav();
 	}
 
+	@Override
+	public boolean spracuj_obj(Objednavka o) {
+		o.vybav();
+		return true;
+	}
 }

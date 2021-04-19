@@ -60,7 +60,7 @@ public class HomeController   extends AController {
         for(Objednavka o:p.getObjednavky()){ //prechadzam jeho objednavky
             if(!(this.p instanceof Skladnik) && !o.getPripravenost()) //zobrazim ju iba ked neni vybavena, ale skladnikovi sa zobrazuju tie co su pripravene na odoslanie
                 this.doList.add(o);
-            else if (this.p instanceof Skladnik && o.getPripravenost()) this.doList.add(o); //ak je skladnik tak mu chcem zobrazit tie co su pripravene ale neboli vybavene este
+            else if (this.p instanceof Skladnik && o.getPripravenost() && !o.get_stav()) this.doList.add(o); //ak je skladnik tak mu chcem zobrazit tie co su pripravene ale neboli vybavene este
             //objednavky_list.getItems().add(o.toList());
         }
         sklad_butt.setVisible(p instanceof Zamestnanec);

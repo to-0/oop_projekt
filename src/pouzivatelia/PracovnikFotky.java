@@ -1,19 +1,14 @@
 package pouzivatelia;
 
 import model.*;
-import sklad.Sklad;
 import tovar.Fotka;
-import tovar.TonerSpotreba;
 import tovar.Tovar;
-
-import java.awt.*;
-import javafx.scene.control.TextArea;
 
 /**
  * Pracovnik, torý ma na starosti výrobu fotiek. Implementuje rozhranie
- * @see pouzivatelia.Vyroba
+ * @see ObjSpracovanie
  */
-public class PracovnikFotky extends Pracovnik implements Vyroba{
+public class PracovnikFotky extends Pracovnik implements ObjSpracovanie {
 	public PracovnikFotky(int id, String meno, Login login, String telefon, String email) {
 		super(id, meno, login, telefon, email);
 		this.stroj = new Stroj(TypStroja.FOTKA,"Tlaciaren Fotiek",this);
@@ -26,7 +21,7 @@ public class PracovnikFotky extends Pracovnik implements Vyroba{
 	 * @return true ak sa podarí vyrobiť false ak je nedostatok materálov.
 	 */
 	@Override
-	public boolean vyrob_tovar(Objednavka o) {
+	public boolean spracuj_obj(Objednavka o) {
 		Fotka f = null;
 		for(Tovar t: o.getTovar()){ //prechadzam vsetok tovar
 			if(!(t instanceof Fotka)) //preskakujem tovar ktory nema na starosti
