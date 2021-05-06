@@ -45,11 +45,11 @@ public class NovaObjController  extends AController{
     //pridavam iba tovar este predtym nez vytvorim objednavku
     public void pridaj_tovarButt() {
         try {
-            String druh = (String) druh_tovaru.getValue();
+            String druh = this.check((String) druh_tovaru.getValue());
             int mnozstvo = Integer.parseInt(mnozstvo_tovaru.getText());
             boolean farebnost;
-            int typ_tovaru = Integer.parseInt((String) typ_choicebox.getValue());
-            if (farebnost_choicebox.getValue().equals("ano"))
+            int typ_tovaru = Integer.parseInt(this.check((String) typ_choicebox.getValue()));
+            if (this.check((String) farebnost_choicebox.getValue()).equals("ano"))
                 farebnost = true;
             else farebnost = false;
             switch (druh) { //zistim si aky druh mam vytvoreny
@@ -65,9 +65,12 @@ public class NovaObjController  extends AController{
             }
             stav.setText(this.tovar.toString());
         }
-        catch(RuntimeException e){
-            throw new Vynimka("Nespravny vstup");
+        catch(Vynimka e){
         }
+    }
+    private String check(String s) throws Vynimka{
+        if(s==null) throw new Vynimka("Nespravny vstup");
+        return s;
     }
     //spracujem akciu vytvorenia objednavok
     public void vytvor_objednavku_butt(ActionEvent e) throws Exception{
@@ -82,7 +85,7 @@ public class NovaObjController  extends AController{
         HomeController controller = loader.<HomeController>getController();
         controller.setData(this.p,this.p.getObjednavky());
         this.stage.setTitle("TomOffice");
-        this.stage.setScene(new Scene(root,600,500));
+        this.stage.setScene(new Scene(root,900,500));
     }
 
 }

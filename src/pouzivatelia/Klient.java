@@ -21,12 +21,11 @@ public class Klient extends Pouzivatel{
 
 	/**
 	 * Prekonaná metóda toString
-	 * @return String v tvare Meno klienta: meno Telefon: telefon Email: email Adresa: adresa
+	 * @return String v tvare Meno: meno Telefon: telefon Email: email Adresa: adresa
 	 */
 	public String toString(){ //prekonavanie polymorfizmus
-		String s = "";
-		s+= "Meno klienta:" +this.meno + "\nTelefon: " + this.telefon + "\n"+
-		"Email: "+this.email + "\nAdresa:"+ this.adresa.toString();
+		String s = super.toString(); //hodim si tam z nadtypu
+		s+= "\nAdresa:"+ this.adresa.toString(); //pridam adresu
 		return s;
 	}
 	

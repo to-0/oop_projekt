@@ -31,6 +31,7 @@ public class PracovnikObalka extends Pracovnik implements ObjSpracovanie {
 				this.getSpravy().pridaj_spravu("Nedostatok materialov");
 				return false;
 			}
+			sklad.od_tvr_papier(spotreba_papiera);
 			this.stroj.spusti_proces(t,o);
 		}
 		return true;

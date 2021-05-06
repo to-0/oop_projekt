@@ -51,14 +51,10 @@ public class Main extends Application {
 	}
 	public static void main(String[] args) {
 		Databaza.init();
-		//Databaza.test();
 		launch(args);
 	}
 	@Override
 	public void stop(){
 		System.out.println("Stage is closing");
-		//Databaza.serializuj_objednavky();
-		//Databaza.serializuj_pouzivatelov();
-		//Databaza.serializuj();
 	}
 }

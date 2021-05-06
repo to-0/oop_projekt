@@ -8,7 +8,7 @@ package tovar;
 public class Zosit extends Tovar implements TonerSpotreba{
 	public Zosit(int mnozstvo, int typ) {
 		super(mnozstvo,typ);
-		this.pocet_stran = (int) Math.floor(Math.random()*(250-50+1)+50);
+		this.pocet_stran = (int) Math.floor(Math.random()*(100-50+1)+50);
 	}
 	/**
 	 * Počet strán

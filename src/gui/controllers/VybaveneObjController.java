@@ -26,6 +26,7 @@ public class VybaveneObjController extends AController{
     public void startuj_cont(Pouzivatel p){
         this.vybavene_klon = new ArrayList<Objednavka>();
         this.list = FXCollections.observableArrayList();
+        this.p = p;
         for(Objednavka o:p.getObjednavky()){
             if(o.get_stav()){ //uz je vybavena
                 this.list.add(o);
@@ -56,7 +57,6 @@ public class VybaveneObjController extends AController{
         HomeController controller = loader.<HomeController>getController();
         controller.setData(this.p,this.p.getObjednavky());
         Stage stage = (Stage) ((Node)e.getSource()).getScene().getWindow();
-        controller.setData(this.p,this.p.getObjednavky());
-        zobraz_okno(root,500,500,stage);
+        zobraz_okno(root,900,500,stage);
     }
 }

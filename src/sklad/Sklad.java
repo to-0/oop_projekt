@@ -38,6 +38,19 @@ public class Sklad implements Serializable {
 			s.upozorni();
 		}
 	}
+	public void od_papier(double mnozstvo){
+		this.papier -=mnozstvo;
+	}
+	public void od_foto_papier(double mnozstvo){
+		this.foto_papier -=mnozstvo;
+
+	}
+	public void od_toner(double mnozstvo){
+		this.toner -= mnozstvo;
+	}
+	public void od_tvr_papier(double mnozstvo){
+		this.tvrdy_papier -=mnozstvo;
+	}
 
 	/**
 	 * Vráti stav skladu

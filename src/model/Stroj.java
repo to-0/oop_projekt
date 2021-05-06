@@ -29,7 +29,9 @@ public class Stroj implements Serializable {
      * @param o objednávka v ktorej je tovar
      */
     public void spusti_proces(Tovar t,Objednavka o){ //tu vytvorim novu nit a zacnem proces vyroby
-        //NESTED CLASS
+        /**
+         * Nested trieda ProcesVyroby, vytvára novú niť a volá metódu stroja.
+         */
         class ProcesVyroby extends Thread{
             Stroj stroj;
             public ProcesVyroby(Stroj  stroj){
@@ -61,7 +63,7 @@ public class Stroj implements Serializable {
         if(t.getMnozstvo()<=10)
             Thread.sleep(5000); //pockam 5sekund, neskor asi zmenim podla poctu tovaru
         else{
-            Thread.sleep(500*t.getMnozstvo());
+            Thread.sleep(100*t.getMnozstvo());
         }
         t.vybav();
         Date date = new Date();

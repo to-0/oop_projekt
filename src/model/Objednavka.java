@@ -66,6 +66,7 @@ public class Objednavka implements Serializable{
 		this.tovar = t;
 		this.suma = vypocitaj_cel_sumu();
 		this.vybavena = false;
+		this.pripravena = false;
 		this.klient = k;
 		this.pozorovatel = ManazerObjednavok.getInstance();
 	}

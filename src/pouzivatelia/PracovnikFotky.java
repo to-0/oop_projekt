@@ -37,7 +37,8 @@ public class PracovnikFotky extends Pracovnik implements ObjSpracovanie {
 				this.getSpravy().pridaj_spravu("Nedostatok materialov");
 				return false;
 			}
-			//TODO odcitanie materialov zo skladu
+			sklad.od_toner(spotreba_tonera);
+			sklad.od_foto_papier(spotreba_papiera);
 			this.stroj.spusti_proces(t,o);
 			//ProcesVyroby_old proces = new ProcesVyroby_old(t,o);
 			//proces.start();

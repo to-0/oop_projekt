@@ -1,9 +1,7 @@
 package gui.controllers;
 
 
-import application.App;
 import databaza.Databaza;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 import model.Objednavka;
-import pouzivatelia.Pouzivatel;
 
 import java.util.ArrayList;
 
@@ -40,7 +37,6 @@ public class LoginController  extends AController {
 			return;
 		}
 		ArrayList<Objednavka> objednavky = p.getObjednavky(); //zoberiem aj jeh objednavky
-		//App.setUser(p);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/home.fxml")); //nacitam home scenu
 		//Parent root = FXMLLoader.load(getClass().getResource("../sceny/home.fxml"));
 		Parent root = loader.load();
@@ -67,7 +63,6 @@ public class LoginController  extends AController {
 			return;
 		}
 		ArrayList<Objednavka> objednavky = p.getObjednavky();
-		App.setUser(p);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../sceny/home.fxml"));
 		//Parent root = FXMLLoader.load(getClass().getResource("../sceny/home.fxml"));
 		Parent root = loader.load();

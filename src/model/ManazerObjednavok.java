@@ -57,7 +57,9 @@ public class ManazerObjednavok implements Serializable {
             }
             if(pracovnik !=null){
                 pracovnik.getObjednavky().add(o); //ak som nasiel vyhovujuceho pracovnika tak priradim objednavku
+                System.out.println("Priradil som "+pracovnik.getMeno());
                 pracovnik.inc_pocet_obj();
+                pracovnik = null;
             }
         }
     }
